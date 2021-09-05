@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_101623) do
+ActiveRecord::Schema.define(version: 2021_09_05_150931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,23 +20,19 @@ ActiveRecord::Schema.define(version: 2021_09_05_101623) do
     t.integer "score"
     t.integer "status"
     t.datetime "deadline"
-    t.bigint "question_id", null: false
     t.bigint "user_id", null: false
     t.bigint "taught_class_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["question_id"], name: "index_assignments_on_question_id"
     t.index ["taught_class_id"], name: "index_assignments_on_taught_class_id"
     t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
   create_table "enrolled_classes", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "taught_class_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["taught_class_id"], name: "index_enrolled_classes_on_taught_class_id"
-    t.index ["user_id"], name: "index_enrolled_classes_on_user_id"
   end
 
   create_table "flashcards", force: :cascade do |t|
@@ -56,16 +52,18 @@ ActiveRecord::Schema.define(version: 2021_09_05_101623) do
     t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "assignment_id", null: false
+    t.index ["assignment_id"], name: "index_questions_on_assignment_id"
   end
 
   create_table "taught_classes", force: :cascade do |t|
     t.string "year"
     t.string "subject"
-    t.string "students"
     t.string "academic_year"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "students", default: "--- []\n"
     t.index ["user_id"], name: "index_taught_classes_on_user_id"
   end
 
@@ -83,10 +81,9 @@ ActiveRecord::Schema.define(version: 2021_09_05_101623) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "assignments", "questions"
   add_foreign_key "assignments", "taught_classes"
   add_foreign_key "assignments", "users"
   add_foreign_key "enrolled_classes", "taught_classes"
-  add_foreign_key "enrolled_classes", "users"
+  add_foreign_key "questions", "assignments"
   add_foreign_key "taught_classes", "users"
 end
