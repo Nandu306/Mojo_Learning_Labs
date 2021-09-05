@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :taught_classes, dependent: :destroy
+
+
   enum role: [:teacher, :student, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
