@@ -10,28 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2021_09_05_153434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
     t.string "topic"
-    t.integer "score"
     t.integer "status"
     t.datetime "deadline"
-    t.bigint "user_id", null: false
     t.bigint "taught_class_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["taught_class_id"], name: "index_assignments_on_taught_class_id"
-    t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
   create_table "enrolled_classes", force: :cascade do |t|
-    t.bigint "taught_class_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["taught_class_id"], name: "index_enrolled_classes_on_taught_class_id"
   end
 
   create_table "flashcards", force: :cascade do |t|
@@ -59,10 +55,10 @@
     t.string "year"
     t.string "subject"
     t.string "academic_year"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "students", default: "--- []\n"
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_taught_classes_on_user_id"
   end
 
@@ -81,8 +77,6 @@
   end
 
   add_foreign_key "assignments", "taught_classes"
-  add_foreign_key "assignments", "users"
-  add_foreign_key "enrolled_classes", "taught_classes"
   add_foreign_key "questions", "assignments"
   add_foreign_key "taught_classes", "users"
 end
