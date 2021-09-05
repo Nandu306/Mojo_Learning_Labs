@@ -1,5 +1,5 @@
 class Assignment < ApplicationRecord
-  belongs_to :user
+
   belongs_to :taught_class
   has_many :questions
 
