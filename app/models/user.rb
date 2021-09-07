@@ -10,8 +10,12 @@ class User < ApplicationRecord
   enum role: [:teacher, :student, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  scope :students, -> { where role: "student" }
+  scope :teachers, -> { where role: "teacher" }
+
 
   validates :name, presence: true
+  # validates :role, presence: true
 
   def set_default_role
     self.role ||= :teacher
