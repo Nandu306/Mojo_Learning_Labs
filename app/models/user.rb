@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
 
   validates :name, presence: true
+  # validates :role, presence: true
 
   def set_default_role
     self.role ||= :teacher
