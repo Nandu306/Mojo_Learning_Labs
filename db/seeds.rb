@@ -84,6 +84,12 @@ Question_Five = Question.find_or_initialize_by(prompt: 'What is the weight of a 
 Question_Five.save
 
 
+# Student Answers
+
+Pierre_Ans = StudentAnswer.find_or_initialize_by(user:Pierre, question: Question_One, student_answer: 'Heart')
+Pierre_Ans.save
+
+
 puts "Finished seeding"
 
 
