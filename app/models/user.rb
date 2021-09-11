@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :taught_classes, dependent: :destroy
+  has_many :assignments, through: :taught_classes, source: :assignments
 
 
   enum role: [:teacher, :student, :admin]
@@ -14,11 +15,12 @@ class User < ApplicationRecord
   scope :teachers, -> { where role: "teacher" }
 
 
+
   validates :name, presence: true
   # validates :role, presence: true
 
   def set_default_role
-    self.role ||= :teacher
+    self.role ||= :student
   end
 
 end
