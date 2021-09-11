@@ -3,5 +3,47 @@
 <%= f.input :year %>
 <%= f.input :subject %>
 <%= f.input :academic_year %>
-<%= f.input :students, multiple: true %>
+<%= f.input :studentlist, as: :array, wrapper_html: { class: "text-array" } %>
+
+
+<%= f.submit %>
 <% end %>
+
+
+<!-- <script>
+
+$(document).ready ->
+  addRow = (ev) ->
+    ev.preventDefault()
+
+    $nearest_row = $(this).prev()
+    // Show remove button in case it was hidden
+    $nearest_row.find('.text-array__remove').show()
+
+    $new_row = $nearest_row.clone()
+    $new_row.find('input').val("")
+
+    // Need to set click handler on newly created button
+    $remove_button = $new_row.find('.text-array__remove')
+    $remove_button.click removeRow
+
+    $new_row.insertBefore(this)
+
+  removeRow = (ev) ->
+    ev.preventDefault()
+
+    this.parentElement.remove()
+    hideRemoveButton()
+
+  // Need to hide button so they can't remove the only row, otherwise there would be nothing to clone.
+  hideRemoveButton = ->
+    $('.text-array').each (i, el) ->
+      $rows = $(el).children('.text-array__row')
+      if $rows.length == 1
+        $rows.find('.text-array__remove').hide()
+
+  $('.text-array__add').click addRow
+  $('.text-array__remove').click removeRow
+  hideRemoveButton()
+
+</script> -->
