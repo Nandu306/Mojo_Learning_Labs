@@ -9,6 +9,7 @@
 
 puts "Preparing to seed data..."
 
+StudentAnswer.destroy_all
 Question.destroy_all
 Assignment.destroy_all
 TaughtClass.destroy_all
@@ -42,13 +43,13 @@ Chen.save
 # Taught Classes
 
 
-Biology = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Biology', students: [Pierre, Chen, Sarah], academic_year: '2021/2022', user: Mary)
+Biology = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Biology', studentlist: [Pierre, Chen, Sarah], academic_year: '2021/2022', user: Mary)
 Biology.save
 
-Physics = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Physics', students: [Pierre, Chen], academic_year: '2021/2022', user: Peter)
+Physics = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Physics', studentlist: [Pierre, Chen], academic_year: '2021/2022', user: Peter)
 Physics.save
 
-Chemistry = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Chemistry', students: [Sarah, Chen], academic_year: '2021/2022', user: Peter)
+Chemistry = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Chemistry', studentlist: [Sarah, Chen], academic_year: '2021/2022', user: Peter)
 Chemistry.save
 
 
