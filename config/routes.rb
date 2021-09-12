@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :class_memberships, only: [ :index ]
+  resources :assignments, only: [ :index ]
 
   get '/dashboard', to: 'pages#dashboard'
 end
