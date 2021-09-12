@@ -2,7 +2,11 @@ class TaughtClassesController < ApplicationController
 
 
   def index
-    @taught_classes = policy_scope(TaughtClass)
+    if current_user.teacher?
+      @taught_classes = policy_scope(TaughtClass.includes(:user)).where(user: current_user)
+    else
+      @taught_classes = policy_scope(TaughtClass)
+    end
   end
 
   def new
@@ -30,7 +34,7 @@ class TaughtClassesController < ApplicationController
   private
 
   def taughtclass_params
-    params.require(:taught_class).permit(:year, :subject, :academic_year, { studentlist: [] })
+    params.require(:taught_class).permit(:year, :subject, :academic_year)
   end
 
 

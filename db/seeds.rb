@@ -20,23 +20,23 @@ User.destroy_all
 
 # Users
 
-Mary = User.find_or_initialize_by(name: 'Mary Smith', email: 'mary@gmail.com', role: 'teacher')
+Mary = User.find_or_initialize_by(name: 'Mary Smith', email: 'mary@gmail.com', role: 'teacher', school_name: 'Best School')
 Mary.password = 'qwerty'
 Mary.save
 
-Peter = User.find_or_initialize_by(name: 'Peter Silva', email: 'peter@gmail.com', role: 'teacher')
+Peter = User.find_or_initialize_by(name: 'Peter Silva', email: 'peter@gmail.com', role: 'teacher', school_name: 'Best School')
 Peter.password = 'qwerty'
 Peter.save
 
-Sarah = User.find_or_initialize_by(name: 'Sarah Williams', email: 'sarah@gmail.com', role: 'student')
+Sarah = User.find_or_initialize_by(name: 'Sarah Williams', email: 'sarah@gmail.com', role: 'student', school_name: 'Second Best School')
 Sarah.password = 'qwerty'
 Sarah.save
 
-Pierre = User.find_or_initialize_by(name: 'Pierre Blanc', email: 'pierre@gmail.com', role: 'student')
+Pierre = User.find_or_initialize_by(name: 'Pierre Blanc', email: 'pierre@gmail.com', role: 'student', school_name: 'Best School')
 Pierre.password = 'qwerty'
 Pierre.save
 
-Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role: 'student')
+Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role: 'student', school_name: 'Best School')
 Chen.password = 'qwerty'
 Chen.save
 
@@ -61,9 +61,6 @@ Pierre_Bio.save
 
 Chen_Bio = ClassMembership.find_or_initialize_by(taught_class: Biology, user: Chen )
 Chen_Bio.save
-
-Sarah_Bio = ClassMembership.find_or_initialize_by(taught_class: Biology, user: Sarah )
-Sarah_Bio.save
 
 Pierre_Phys = ClassMembership.find_or_initialize_by(taught_class: Physics, user: Pierre )
 Pierre_Phys.save

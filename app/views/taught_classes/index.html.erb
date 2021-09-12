@@ -1,16 +1,43 @@
+<% if current_user.teacher? %>
+  <h1> Your classes </h1>
+<% elsif current_user.student? %>
+  <h1> Classes on offer </h1>
+<% end %>
+
+
+
+
+
 <% @taught_classes.each do |taught_class| %>
 
-  <div class="d-flex">
-    <%= taught_class.year %>
-    <%= taught_class.subject %>
-    <%= taught_class.academic_year %>
+  <% if taught_class.user.school_name == current_user.school_name %>
 
-    <% if current_user.student? %>
+    <div class="d-flex">
+      <%= taught_class.year %>
+      <%= taught_class.subject %>
+      <%= taught_class.academic_year %>
 
-      <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true %>
+      <% if current_user.student? %>
 
-    <% end %>
-  </div>
+        <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true %>
+
+      <% elsif current_user.teacher? %>
+
+        <% if taught_class.assignments.any? %>
+
+          <%= link_to 'Set another assignment', new_taught_class_assignment_path(taught_class) %>
+          <%= link_to 'See all assignments set', taught_class_assignments_path(taught_class) %>
+
+        <% else %>
+
+          <%= link_to 'Set an assignment', new_taught_class_assignment_path(taught_class) %>
+
+        <% end %>
+
+      <% end %>
+    </div>
+
+  <% end %>
 
 
 <% end %>
