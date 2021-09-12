@@ -4,7 +4,7 @@
 
   <% @assignments.each do |assignment| %>
 
-    <% assignment.taught_class.class_memberships.where(user: current_user).each do |class_membership| %>
+    <% assignment.class_memberships.where(user: current_user).each do |class_membership| %>
           <div class="d-flex flex-column">
           <%= class_membership.taught_class.assignments.each do |assignment| %>
             <%= assignment.topic %>
