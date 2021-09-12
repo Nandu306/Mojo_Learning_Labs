@@ -3,13 +3,14 @@
     <h1> Teacher dashboard </h1>
     <%= link_to 'Create a class', new_taught_class_path %>
     <%= link_to 'View my classes', taught_classes_path %>
+    <%#= link_to 'View my assignments', taught_class_assignments_path %>
   </div>
 
 <% elsif current_user.student? %>
 
   <div class="d-flex flex-column">
     <h1> Student dashboard </h1>
-    <%= link_to 'View my classes', taught_classes_path %>
+    <%= link_to 'View my classes', class_memberships_path %>
   </div>
 
 <% end %>

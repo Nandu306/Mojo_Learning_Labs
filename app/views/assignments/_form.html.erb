@@ -1,0 +1,5 @@
+<%= simple_form_for ([@taught_class, @assignment]) do |f| %>
+<%= f.input :topic %>
+<%= f.input :deadline %>
+<%= f.button :submit, "Create assignment", class: "btn btn-primary" %>
+<% end %>

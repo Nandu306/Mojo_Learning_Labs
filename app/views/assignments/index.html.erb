@@ -1,0 +1,9 @@
+<h1> All assignments </h1>
+
+<% @assignments.each do |assignment| %>
+  <div class="d-flex flex-column">
+    <%= assignment.topic %>
+    <%= assignment.deadline %>
+  </div>
+
+<% end %>
