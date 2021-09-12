@@ -2,7 +2,7 @@ class TaughtClassesController < ApplicationController
 
 
   def index
-    @taught_classes = policy_scope(TaughtClass).where(user: current_user)
+    @taught_classes = policy_scope(TaughtClass)
   end
 
   def new

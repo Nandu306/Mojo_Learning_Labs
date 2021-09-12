@@ -3,10 +3,7 @@
 <%= f.input :year %>
 <%= f.input :subject %>
 <%= f.input :academic_year %>
-<%= f.input :studentlist, as: :array, wrapper_html: { class: "text-array" } %>
-
-
-<%= f.submit %>
+<%= f.button :submit, "Create a class", class: "btn btn-primary" %>
 <% end %>
 
 

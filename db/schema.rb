@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_160711) do
+ActiveRecord::Schema.define(version: 2021_09_12_095424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2021_09_11_160711) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["taught_class_id"], name: "index_assignments_on_taught_class_id"
+  end
+
+  create_table "class_memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "taught_class_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["taught_class_id"], name: "index_class_memberships_on_taught_class_id"
+    t.index ["user_id"], name: "index_class_memberships_on_user_id"
   end
 
   create_table "flashcards", force: :cascade do |t|
@@ -62,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_09_11_160711) do
     t.string "academic_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "studentlist", default: "--- []\n"
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_taught_classes_on_user_id"
   end
@@ -82,6 +90,8 @@ ActiveRecord::Schema.define(version: 2021_09_11_160711) do
   end
 
   add_foreign_key "assignments", "taught_classes"
+  add_foreign_key "class_memberships", "taught_classes"
+  add_foreign_key "class_memberships", "users"
   add_foreign_key "questions", "assignments"
   add_foreign_key "student_answers", "questions"
   add_foreign_key "student_answers", "users"
