@@ -8,4 +8,14 @@
     <%= class_membership.taught_class.academic_year %>
   </div>
 
-<% end %>
+
+
+
+   <% if class_membership.taught_class.assignments.any? %>
+
+    <%= link_to 'See all assignments set', class_membership_assignments_path(class_membership) %>
+
+   <% end %>
+
+
+  <% end %>

@@ -1,14 +1,11 @@
 class AssignmentsController < ApplicationController
 
   def index
-    if @taught_class.present?
-      @taught_class = TaughtClass.find(params[:taught_class_id])
-      @assignments = policy_scope(Assignment.includes(:taught_class)).where(taught_class: @taught_class)
-    else
-       @assignments = policy_scope(Assignment.includes(:taught_class))
 
-    end
+    @taught_class = TaughtClass.find(params[:taught_class_id])
+    @assignments_set = policy_scope(Assignment.includes(:taught_class)).where(taught_class: @taught_class)
 
+      # @assignments = policy_scope(Assignment.includes(:taught_class))
   end
 
 
