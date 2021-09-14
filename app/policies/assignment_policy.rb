@@ -8,4 +8,5 @@ class AssignmentPolicy < ApplicationPolicy
   def create?
     user.teacher?
   end
+
 end

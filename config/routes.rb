@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :assignments, only: [ :index ]
 
   get '/dashboard', to: 'pages#dashboard'
+  get '/my_assignments', to: 'assignments#my_assignments'
 end

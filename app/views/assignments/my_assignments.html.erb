@@ -1,0 +1,12 @@
+
+
+
+    <% @class_memberships.each do |class_membership| %>
+    <% class_membership.taught_class.assignments.each do |assignment| %>
+      <div class="d-flex flex-column">
+        <%= assignment.topic %>
+        <%= assignment.deadline %>
+      </div>
+    <% end %>
+    <% end %>
+

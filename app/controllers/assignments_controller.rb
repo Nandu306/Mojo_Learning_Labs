@@ -34,6 +34,14 @@ class AssignmentsController < ApplicationController
   end
 
 
+  def my_assignments
+    skip_authorization
+    @class_memberships = current_user.class_memberships
+
+
+  end
+
+
   private
 
   def assignment_params
