@@ -24,4 +24,8 @@ class User < ApplicationRecord
     self.role ||= :student
   end
 
+  def assignments_to_do
+    self.class_memberships.each { |class_membership| class_membership.taught_class.assignments }
+  end
+
 end

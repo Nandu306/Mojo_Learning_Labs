@@ -1,9 +1,25 @@
 <h1> All assignments </h1>
 
-<% @assignments.each do |assignment| %>
-  <div class="d-flex flex-column">
-    <%= assignment.topic %>
-    <%= assignment.deadline %>
-  </div>
+<% if current_user.student? %>
+
+  <% current_user.class_memberships.each do |class_membership| %>
+    <% class_membership.taught_class.assignments.each do |assignment| %>
+      <div class="d-flex flex-column">
+        <%= assignment.topic %>
+        <%= assignment.deadline %>
+      </div>
+    <% end %>
+  <% end %>
+
+
+<% elsif current_user.teacher? %>
+
+  <% @assignments_set.each do |assignment_set| %>
+    <div class="d-flex flex-column">
+      <%= assignment_set.topic %>
+      <%= assignment_set.deadline %>
+    </div>
+
+  <% end %>
 
 <% end %>
