@@ -18,6 +18,4 @@ class Assignment < ApplicationRecord
 
 
 
-
-
 end
