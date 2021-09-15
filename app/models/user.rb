@@ -17,8 +17,12 @@ class User < ApplicationRecord
 
 
 
+
+
   validates :name, presence: true
   # validates :role, presence: true
+
+  SCHOOLS = ['Best School', 'Second Best School']
 
   def set_default_role
     self.role ||= :student

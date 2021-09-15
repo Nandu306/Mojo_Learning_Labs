@@ -2,10 +2,12 @@
 
 
     <% @class_memberships.each do |class_membership| %>
-    <% class_membership.taught_class.assignments.each do |assignment| %>
+    <% class_membership.taught_class.assignments.order(:deadline).each do |assignment| %>
       <div class="d-flex flex-column">
+        <%= assignment.taught_class.subject %>
         <%= assignment.topic %>
         <%= assignment.deadline %>
+
       </div>
     <% end %>
     <% end %>
