@@ -1,0 +1,21 @@
+<div class="d-flex flex-column">
+  <%= @assignment.taught_class.subject %>
+<%= @assignment.topic %>
+<%= @assignment.deadline %>
+</div>
+
+
+
+<% @assignment.questions.each do |question| %>
+<%= question.prompt %>
+  <%= simple_form_for question do |f| %>
+    <%= f.input, question.option_1, as: :check_boxes %>
+    <%= f.input :option_2, as: :check_boxes %>
+    <%= f.input :option_3, as: :check_boxes %>
+    <%= f.input :option_4, as: :check_boxes %>
+    <% end %>
+<% end %>
+
+
+
+

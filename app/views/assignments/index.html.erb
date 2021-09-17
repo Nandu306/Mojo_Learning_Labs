@@ -18,6 +18,7 @@
     <div class="d-flex flex-column">
       <%= assignment_set.topic %>
       <%= assignment_set.deadline %>
+      <%= link_to 'See assignment', assignment_path(assignment_set) %>
     </div>
 
   <% end %>

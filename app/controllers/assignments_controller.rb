@@ -53,15 +53,18 @@ class AssignmentsController < ApplicationController
   def my_assignments
     skip_authorization
     @class_memberships = current_user.class_memberships
-
-
   end
 
+  def show
+    @assignment = Assignment.find(params[:id])
+    authorize @assignment
+
+  end
 
   private
 
   def assignment_params
-    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [])
+    params.require(:assignment).permit(:topic, :deadline, :taught_class_id)
   end
 
 end
