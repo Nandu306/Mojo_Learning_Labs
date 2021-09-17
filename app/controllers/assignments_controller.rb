@@ -13,6 +13,9 @@ class AssignmentsController < ApplicationController
     @taught_class = TaughtClass.find(params[:taught_class_id])
     @assignment = Assignment.new
     @assignment.taught_class = @taught_class
+
+    @assignment.questions.build
+
     authorize @assignment
 
   end
@@ -26,7 +29,20 @@ class AssignmentsController < ApplicationController
 
 
     if @assignment.save
-      redirect_to taught_class_assignments_path(@taught_class), notice: "Assignment successfully created"
+      redirect_to new_assignment_question_path(@assignment), notice: "Assignment successfully created. Please start adding questions"
+    else
+      render :new
+    end
+
+  end
+
+
+  def publish
+    @assignment = Assignment.find(params[:id])
+    authorize @assignment
+
+    if @assignment.update(status: 'in_progress')
+      redirect_to taught_classes_path, notice: "Assignment published"
     else
       render :new
     end
@@ -45,7 +61,7 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.require(:assignment).permit(:topic, :deadline)
+    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [])
   end
 
 end

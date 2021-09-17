@@ -1,4 +1,4 @@
-class AssignmentPolicy < ApplicationPolicy
+class QuestionPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,10 +6,6 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def create?
-    user.teacher?
-  end
-
-  def publish?
     user.teacher?
   end
 

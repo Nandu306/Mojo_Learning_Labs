@@ -13,4 +13,8 @@ class TaughtClassPolicy < ApplicationPolicy
     user.teacher?
   end
 
+  def class_students?
+    user.teacher?
+  end
+
 end

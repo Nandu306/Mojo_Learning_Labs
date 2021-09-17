@@ -5,6 +5,8 @@ class Assignment < ApplicationRecord
   has_many :student_answers, through: :questions
   has_many :class_memberships, through: :taught_class, source: :class_memberships
 
+  accepts_nested_attributes_for :questions
+
   enum status: [:completed, :in_progress, :not_started]
 
   validates :topic, presence: true

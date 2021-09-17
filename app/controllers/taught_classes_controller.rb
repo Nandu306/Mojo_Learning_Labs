@@ -31,6 +31,14 @@ class TaughtClassesController < ApplicationController
   end
 
 
+  def class_students
+    @taught_class = TaughtClass.find(params[:taught_class_id])
+    @class_students = @taught_class.class_memberships
+    authorize @taught_class
+
+  end
+
+
   private
 
   def taughtclass_params

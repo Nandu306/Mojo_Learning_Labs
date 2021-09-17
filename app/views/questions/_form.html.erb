@@ -1,0 +1,10 @@
+<%= simple_form_for ([@assignment, @question]) do |f| %>
+<%= f.hidden_field :assignment_id, value: @assignment.id %>
+<%= f.input :prompt %>
+<%= f.input :option_1 %>
+<%= f.input :option_2 %>
+<%= f.input :option_3 %>
+<%= f.input :option_4 %>
+<%= f.input :answer %>
+<%= f.button :submit, "Add question", class: "btn btn-primary" %>
+<% end %>
