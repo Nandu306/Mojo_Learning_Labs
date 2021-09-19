@@ -71,13 +71,13 @@ Pierre_Phys.save
 # Assignments
 
 
-Respiration = Assignment.find_or_initialize_by(topic: 'Respiration', status: 'completed', deadline: DateTime.new(2021,9,3,0,0,0), taught_class: Biology)
+Respiration = Assignment.find_or_initialize_by(topic: 'Respiration', status: 'published', deadline: DateTime.new(2021,9,3,0,0,0), taught_class: Biology)
 Respiration.save
 
-Reactions = Assignment.find_or_initialize_by(topic: 'Reactions', status: 'completed', deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Chemistry)
+Reactions = Assignment.find_or_initialize_by(topic: 'Reactions', status: 'published', deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Chemistry)
 Reactions.save
 
-Forces = Assignment.find_or_initialize_by(topic: 'Forces', status: 'completed', deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Physics)
+Forces = Assignment.find_or_initialize_by(topic: 'Forces', status: 'published', deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Physics)
 Forces.save
 
 
@@ -102,7 +102,7 @@ Question_Five.save
 
 # Student Answers
 
-Pierre_Ans = StudentAnswer.find_or_initialize_by(user:Pierre, question: Question_One, student_answer: 'Heart')
+Pierre_Ans = StudentAnswer.find_or_initialize_by(user:Pierre, question: Question_One, student_answer: 'Heart', assignment: Respiration)
 Pierre_Ans.save
 
 
