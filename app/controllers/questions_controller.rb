@@ -5,11 +5,7 @@ class QuestionsController < ApplicationController
 
     @question = Question.new
 
-    @question.assignment = @assignment
-
-    @question.assignment_id = @assignment_id
-
-    3.times { @assignment.questions.build }
+    # 4.times { @question.student_answers.build }
 
     authorize @question
 
@@ -32,10 +28,17 @@ class QuestionsController < ApplicationController
   end
 
 
+  def answer_assignment
+    @question = Question.find(params[:id])
+    authorize @question
+
+  end
+
+
   private
 
   def question_params
-    params.require(:question).permit(:assignment_id, :prompt, :option_1, :option_2, :option_3, :option_4, :answer)
+    params.require(:question).permit(:assignment_id, :prompt, :option_1, :option_2, :option_3, :option_4, :answer, student_answer_attributes: [])
 
   end
 

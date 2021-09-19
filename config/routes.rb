@@ -8,8 +8,10 @@ Rails.application.routes.draw do
       resources :assignments, only: [ :new, :create, :show, :delete, :index ], shallow: true do
           member do
             post 'publish', to: 'assignments#publish'
+            post 'answer_assignment', to: 'assignments#answer_assignment'
           end
         resources :questions, shallow: true
+        resources :student_answers, shallow: true
       end
     end
 

@@ -14,7 +14,13 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new
     @assignment.taught_class = @taught_class
 
-    @assignment.questions.build
+    @assignment.questions.build(assignment_id: @assignment.id)
+
+    # question.student_answers.build
+
+    Question.all.each do |question|
+      @assignment.student_answers.build(question_id: question.id)
+    end
 
     authorize @assignment
 
@@ -41,7 +47,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     authorize @assignment
 
-    if @assignment.update(status: 'in_progress')
+    if @assignment.update(status: 'published')
       redirect_to taught_classes_path, notice: "Assignment published"
     else
       render :new
@@ -50,18 +56,28 @@ class AssignmentsController < ApplicationController
   end
 
 
-  def my_assignments
-    skip_authorization
-    @class_memberships = current_user.class_memberships
-
+  def answer_assignment
+    @assignment = Assignment.find(params[:id])
+    authorize @assignment
 
   end
 
 
+  def my_assignments
+    skip_authorization
+    @class_memberships = current_user.class_memberships
+  end
+
+  def show
+    @assignment = Assignment.find(params[:id])
+    authorize @assignment
+
+  end
+
   private
 
   def assignment_params
-    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [])
+    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [], student_answers_attributes: [:student_answer, :question_id])
   end
 
 end

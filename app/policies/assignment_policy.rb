@@ -13,4 +13,12 @@ class AssignmentPolicy < ApplicationPolicy
     user.teacher?
   end
 
+  def show?
+    user.teacher? || user.student?
+  end
+
+  def answer_assignment?
+    user.student?
+  end
+
 end

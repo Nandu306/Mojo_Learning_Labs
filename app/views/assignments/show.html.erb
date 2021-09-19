@@ -1,0 +1,45 @@
+<div class="d-flex flex-column">
+  <%= @assignment.taught_class.subject %>
+<%= @assignment.topic %>
+<%= @assignment.deadline %>
+</div>
+
+
+
+<% @assignment.questions.each do |question| %>
+
+
+
+      <%=simple_form_for (question) do |f|  %>
+      <%= f.label :prompt, label: question.prompt %>
+
+      <div class="d-flex flex-column">
+         <%= f.simple_fields_for (question.prompt) do |a| %>
+
+         <div class="d-flex">
+           <%= a.label :option_1, label: question.option_1 %>
+           <%= a.radio_button :student_answer, checked_value: true, unchecked_value: false %>
+         </div>
+
+          <%= a.label :option_2, label: question.option_2 %>
+          <%= a.radio_button :student_answer, checked_value: true, unchecked_value: false %>
+          <%= a.label :option_3, label: question.option_3 %>
+          <%= a.radio_button :student_answer, checked_value: true, unchecked_value: false %>
+          <%= a.label :option_4, label: question.option_4 %>
+          <%= a.radio_button :student_answer, checked_value: true, unchecked_value: false %>
+        <% end %>
+      </div>
+
+
+
+      <% end %>
+
+  <%= link_to 'Submit assignment', new_assignment_student_answer_path(@assignment) %>
+
+<% end %>
+
+
+
+
+
+
