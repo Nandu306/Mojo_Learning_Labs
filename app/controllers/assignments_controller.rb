@@ -14,13 +14,13 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.new
     @assignment.taught_class = @taught_class
 
-    @assignment.questions.build(assignment_id: @assignment.id)
+    question = @assignment.questions.build(assignment_id: @assignment.id)
 
-    # question.student_answers.build
+    question.student_answers.build(question_id: question.id)
 
-    Question.all.each do |question|
-      @assignment.student_answers.build(question_id: question.id)
-    end
+    # Question.all.each do |question|
+    #   @assignment.student_answers.build(question_id: question.id)
+    # end
 
     authorize @assignment
 

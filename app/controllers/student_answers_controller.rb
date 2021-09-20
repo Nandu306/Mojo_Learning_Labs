@@ -5,6 +5,8 @@ class StudentAnswersController < ApplicationController
 
     @assignment = Assignment.find(params[:assignment_id])
 
+    @assignment
+
 
 
     @student_answer = StudentAnswer.new
@@ -16,8 +18,6 @@ class StudentAnswersController < ApplicationController
     skip_authorization
 
     @assignment = Assignment.find(params[:assignment_id])
-
-    # @assignment.questions.each { |question| question.id = @student_answer.question_id}
 
 
     @student_answer = StudentAnswer.new(student_answer_params)
