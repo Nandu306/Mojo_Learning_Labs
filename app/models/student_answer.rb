@@ -4,6 +4,8 @@ class StudentAnswer < ApplicationRecord
   belongs_to :question
 
 
+
+
   def correct
     self.student_answer == question.answer
   end

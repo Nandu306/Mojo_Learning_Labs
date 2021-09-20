@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 
     @question = Question.new
 
-    # 4.times { @question.student_answers.build }
+    4.times { @question.student_answers.build }
 
     authorize @question
 
@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:assignment_id, :prompt, :option_1, :option_2, :option_3, :option_4, :answer, student_answer_attributes: [])
+    params.require(:question).permit(:assignment_id, :prompt, :option_1, :option_2, :option_3, :option_4, :answer, student_answer_attributes: [:id, :student_answer])
 
   end
 
