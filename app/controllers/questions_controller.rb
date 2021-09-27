@@ -28,13 +28,6 @@ class QuestionsController < ApplicationController
   end
 
 
-  def answer_assignment
-    @question = Question.find(params[:id])
-    authorize @question
-
-  end
-
-
   private
 
   def question_params

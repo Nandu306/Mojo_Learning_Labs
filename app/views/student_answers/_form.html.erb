@@ -1,2 +1,19 @@
+   <%= simple_form_for ([@assignment,@student_answer]) do |f|  %>
+      <%= f.hidden_field :assignment_id, value: @assignment.id %>
 
+      <% @assignment.questions.each do |question| %>
+
+        <%= f.hidden_field :question_id, value: question.id %>
+        <%= f.label :prompt, label: question.prompt %>
+        <%#= f.input :student_answer, label:false %>
+        <%= f.simple_fields_for :student_answers do |a| %>
+          <%= a.hidden_field :id %>
+          <%= a.input :student_answer, label:false, input_html: { name: 'assignment[student_answers][][student_answer]' } %>
+        <% end %>
+
+
+      <% end %>
+
+      <%= f.submit "Submit assignment" %>
+  <% end %>
 
