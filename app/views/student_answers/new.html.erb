@@ -1,32 +1,12 @@
-      <%= simple_form_for ([@assignment,@student_answer]) do |f|  %>
-      <%= f.hidden_field :assignment_id, value: @assignment.id %>
 
-      <% @assignment.questions.each do |question| %>
 
-      <%= f.hidden_field :question_id, value: question.id %>
+   <div>
+     <%= render "form" %>
 
-        <%= f.label :prompt, label: question.prompt %>
-
-        <% options_array = [] %>
-        <% options_array << question.option_1.to_s << question.option_2.to_s << question.option_3.to_s << question.option_4.to_s %>
-
-        <div class="d-flex flex-column">
-           <%= f.simple_fields_for :student_answers do |a| %>
+   </div>
 
 
 
-           <div class="d-flex">
-            <%= a.input :student_answer, label:false %>
-
-           </div>
-
-          <% end %>
-        </div>
 
 
-      <% end %>
-
-
-
-      <%= f.submit "Submit assignment" %>
-  <% end %>
+<!-- input_html: { name: 'project[members][][email]', autocomplete: 'off' } -->

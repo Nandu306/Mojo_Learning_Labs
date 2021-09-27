@@ -5,8 +5,6 @@ class StudentAnswersController < ApplicationController
 
     @assignment = Assignment.find(params[:assignment_id])
 
-    @assignment
-
 
 
     @student_answer = StudentAnswer.new

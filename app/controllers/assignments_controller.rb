@@ -5,7 +5,6 @@ class AssignmentsController < ApplicationController
     @taught_class = TaughtClass.find(params[:taught_class_id])
     @assignments_set = policy_scope(Assignment.includes(:taught_class)).where(taught_class: @taught_class)
 
-      # @assignments = policy_scope(Assignment.includes(:taught_class))
   end
 
 
@@ -56,11 +55,19 @@ class AssignmentsController < ApplicationController
   end
 
 
-  def answer_assignment
+   def submit_answer
     @assignment = Assignment.find(params[:id])
     authorize @assignment
 
+    if @assignment.update
+      redirect_to taught_classes_path, notice: "Assignment published"
+    else
+      render :new
+    end
+
   end
+
+
 
 
   def my_assignments
