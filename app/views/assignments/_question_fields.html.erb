@@ -1,0 +1,8 @@
+ <div class="nested-fields">
+    <%= form.hidden_field :_destroy %>
+    <%= form.text_field :prompt %>
+    <%= form.hidden_field :assignment_id, value: @assignment.id %>
+    <small>
+      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+    </small>
+  </div>

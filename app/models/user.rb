@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :taught_classes, dependent: :destroy
   has_many :assignments, through: :taught_classes, source: :assignments
   has_many :class_memberships, dependent: :destroy
+  has_many :student_answers, through: :questions
 
 
   enum role: [:teacher, :student, :admin]
