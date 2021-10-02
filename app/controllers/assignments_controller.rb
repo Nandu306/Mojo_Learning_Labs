@@ -12,15 +12,7 @@ class AssignmentsController < ApplicationController
     @taught_class = TaughtClass.find(params[:taught_class_id])
     @assignment = Assignment.new
     @assignment.taught_class = @taught_class
-
-    question = @assignment.questions.build(assignment_id: @assignment.id)
-
-    question.student_answers.build(question_id: question.id)
-
-    # Question.all.each do |question|
-    #   @assignment.student_answers.build(question_id: question.id)
-    # end
-
+    # @assignment.questions.build
     authorize @assignment
 
   end
@@ -34,7 +26,7 @@ class AssignmentsController < ApplicationController
 
 
     if @assignment.save
-      redirect_to new_assignment_question_path(@assignment), notice: "Assignment successfully created. Please start adding questions"
+      redirect_to root_path(@assignment), notice: "Assignment successfully created."
     else
       render :new
     end
@@ -49,6 +41,7 @@ class AssignmentsController < ApplicationController
     if @assignment.update(status: 'published')
       redirect_to taught_classes_path, notice: "Assignment published"
     else
+      puts @assignment.errors.full_messages
       render :new
     end
 
@@ -84,7 +77,17 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [], student_answers_attributes: [:student_answer, :question_id])
+    params.require(:assignment).permit(
+      :topic,
+      :deadline,
+      :taught_class_id,
+      questions_attributes: [
+       :_destroy,
+       :id,
+       :prompt,
+       student_answers_attributes: [:_destroy,:student_answer, :id]
+      ]
+    )
   end
 
 end

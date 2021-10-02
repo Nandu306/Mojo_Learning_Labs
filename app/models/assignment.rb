@@ -5,8 +5,8 @@ class Assignment < ApplicationRecord
   has_many :student_answers, inverse_of: :assignment
   has_many :class_memberships, through: :taught_class, source: :class_memberships
 
-  accepts_nested_attributes_for :questions
-  accepts_nested_attributes_for :student_answers
+  accepts_nested_attributes_for :questions, allow_destroy: true
+
 
   enum status: [:published, :unpublished]
 
