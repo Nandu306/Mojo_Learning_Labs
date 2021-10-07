@@ -5,12 +5,10 @@ Rails.application.routes.draw do
   resources :taught_classes do
       get '/class_students', to: 'taught_classes#class_students'
       resources :class_memberships, only: [ :create ], shallow: true
-      resources :assignments, only: [ :new, :create, :show, :delete, :index ], shallow: true do
-          member do
-            post 'publish', to: 'assignments#publish'
-          end
-        resources :questions, shallow: true
-        resources :student_answers, shallow: true
+      resources :assignments, shallow: true do
+          # member do
+          #   post 'publish', to: 'assignments#publish'
+          # end
       end
     end
 

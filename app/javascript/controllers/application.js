@@ -1,4 +1,5 @@
-import { Application } from "@hotwired/stimulus"
+import { Application } from "stimulus"
+import { AbymeController } from 'abyme';
 
 const application = Application.start()
 
@@ -6,5 +7,6 @@ const application = Application.start()
 application.warnings = true
 application.debug    = false
 window.Stimulus      = application
+application.register('abyme', AbymeController)
 
 export { application }

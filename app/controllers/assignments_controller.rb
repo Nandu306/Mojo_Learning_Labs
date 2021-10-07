@@ -26,9 +26,28 @@ class AssignmentsController < ApplicationController
 
 
     if @assignment.save
-      redirect_to root_path(@assignment), notice: "Assignment successfully created."
+      redirect_to root_path
     else
+      puts @assignment.errors.full_messages
       render :new
+    end
+
+  end
+
+  def edit
+    skip_authorization
+    @assignment = Assignment.find(params[:id])
+
+  end
+
+  def update
+    skip_authorization
+    @assignment = Assignment.find(params[:id])
+
+     if @assignment.update(assignment_params)
+      redirect_to taught_classes_path
+    else
+      render :edit
     end
 
   end
@@ -77,17 +96,7 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.require(:assignment).permit(
-      :topic,
-      :deadline,
-      :taught_class_id,
-      questions_attributes: [
-       :_destroy,
-       :id,
-       :prompt,
-       student_answers_attributes: [:_destroy,:student_answer, :id]
-      ]
-    )
+    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [:id, :prompt, :_destroy, student_answers_attributes: [:id, :student_answer, :_destroy, user_id: current_user] ])
   end
 
 end

@@ -1,8 +1,12 @@
- <div class="nested-fields">
-    <%= form.hidden_field :_destroy %>
-    <%= form.text_field :prompt %>
-    <%= form.hidden_field :assignment_id, value: @assignment.id %>
-    <small>
-      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
-    </small>
-  </div>
+<%= f.input :prompt %>
+<%= f.hidden_field :_destroy %>
+<%#= f.hidden_field :assignment_id, value: @assignment.id %>
+<%= remove_associated_record %>
+
+<%= f.abyme_for(:student_answers, partial: 'assignments/student_answer_fields') do |abyme| %>
+    <%= abyme.records %>
+    <%= abyme.new_records %>
+    <%= add_associated_record %>
+    <%#= f.hidden_field :assignment_id, value: @assignment.id %>
+<% end %>
+
