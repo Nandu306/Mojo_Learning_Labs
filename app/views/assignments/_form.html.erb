@@ -2,37 +2,16 @@
 <%= f.input :topic %>
 <%= f.input :deadline %>
 
- <div data-controller="nested-form">
-    <template data-nested-form-target='template'>
-      <%= f.simple_fields_for :questions, Question.new, html: { child_index: 'TEMPLATE_RECORD' } do |question| %>
-        <div>
-          <%= question.hidden_field :_destroy %>
-          <%= question.input :prompt %>
-          <small>
-            <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
-          </small>
-        </div>
-      <% end %>
-    </template>
 
-    <%= f.simple_fields_for :questions do |question| %>
-      <div>
-          <%= question.hidden_field :_destroy %>
-          <%= question.input :prompt %>
-          <small>
-            <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
-          </small>
-        </div>
-    <% end %>
-
-    <div data-nested-form-target="add_item">
-      <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
-    </div>
-  </div>
+<%= f.abyme_for(:questions, partial: 'assignments/question_fields') do |abyme| %>
+    <%= abyme.records %>
+    <%= abyme.new_records %>
+    <%= add_associated_record %>
+<% end %>
 
 
 
+<%= f.button :submit, "Save", class: "btn btn-primary" %>
 
 
-<%= f.button :submit, "Submit assignment", class: "btn btn-primary" %>
 <% end %>
