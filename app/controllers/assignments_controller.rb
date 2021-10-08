@@ -96,7 +96,7 @@ class AssignmentsController < ApplicationController
   private
 
   def assignment_params
-    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [:id, :prompt, :_destroy, student_answers_attributes: [:id, :student_answer, :_destroy, user_id: current_user] ])
+    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [:id, :prompt, :_destroy, options_attributes: [:id, :content, :_destroy] ])
   end
 
 end

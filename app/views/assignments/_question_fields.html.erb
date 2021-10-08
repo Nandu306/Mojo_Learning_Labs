@@ -3,7 +3,7 @@
 <%#= f.hidden_field :assignment_id, value: @assignment.id %>
 <%= remove_associated_record %>
 
-<%= f.abyme_for(:student_answers, partial: 'assignments/student_answer_fields') do |abyme| %>
+<%= f.abyme_for(:options, partial: 'assignments/student_answer_fields') do |abyme| %>
     <%= abyme.records %>
     <%= abyme.new_records %>
     <%= add_associated_record %>
