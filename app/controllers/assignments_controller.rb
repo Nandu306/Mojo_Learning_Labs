@@ -84,16 +84,32 @@ class AssignmentsController < ApplicationController
   # end
 
   def new_completed_assignment
+    skip_authorization
+    @assignment = Assignment.find(params[:id])
+    @completed_assignment = @assignment.completed_assignments.build
+
+    @assignment.questions.each do |question|
+      @completed_assignment.student_answers.build(question: question)
+    end
 
 
   end
 
 
   def create_completed_assignment
+    skip_authorization
+    @assignment = Assignment.find(params[:id])
+    @completed_assignment = @assignment.completed_assignments.build(completed_assignment_params)
+    @completed_assignment.user = current_user
 
+    if @completed_assignment.save
+      redirect_to root_path
+    else
+      puts @completed_assignment.errors.full_messages
+      render :new
+    end
 
   end
-
 
 
 
@@ -125,6 +141,11 @@ class AssignmentsController < ApplicationController
         options_attributes: [:id, :content, :_destroy]
       ]
         )
+  end
+
+
+  def completed_assignment_params
+    params.require(:completed_assignment).permit(student_answers_attributes: [:assignment_id, :question_id, :option_id])
   end
 
 end

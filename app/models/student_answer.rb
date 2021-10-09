@@ -1,7 +1,8 @@
 class StudentAnswer < ApplicationRecord
-  belongs_to :user
-  belongs_to :assignment
+
+  belongs_to :completed_assignment
   belongs_to :question
+  belongs_to :option
 
 
 

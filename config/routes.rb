@@ -9,7 +9,7 @@ Rails.application.routes.draw do
           member do
             # post 'publish', to: 'assignments#publish'
             get 'new_completed_assignment', to: 'assignments#new_completed_assignment'
-            get 'create_completed_assignment', to: 'assignments#create_completed_assignment'
+            post 'create_completed_assignment', to: 'assignments#create_completed_assignment'
           end
         resources :student_answers, shallow: true
       end

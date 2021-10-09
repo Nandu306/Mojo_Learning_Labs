@@ -7,7 +7,9 @@ class Assignment < ApplicationRecord
   has_many :student_answers, through: :questions
   has_many :options, through: :questions
   has_many :class_memberships, through: :taught_class, source: :class_memberships
+  has_many :completed_assignments
 
+  accepts_nested_attributes_for :completed_assignments
   accepts_nested_attributes_for :student_answers, allow_destroy: true
 
   abymize :questions

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_121555) do
+ActiveRecord::Schema.define(version: 2021_10_09_125942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2021_10_08_121555) do
     t.index ["user_id"], name: "index_class_memberships_on_user_id"
   end
 
+  create_table "completed_assignments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "assignment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignment_id"], name: "index_completed_assignments_on_assignment_id"
+    t.index ["user_id"], name: "index_completed_assignments_on_user_id"
+  end
+
   create_table "flashcards", force: :cascade do |t|
     t.string "subject"
     t.string "topic"
@@ -52,10 +61,6 @@ ActiveRecord::Schema.define(version: 2021_10_08_121555) do
 
   create_table "questions", force: :cascade do |t|
     t.string "prompt"
-    t.string "option_1"
-    t.string "option_2"
-    t.string "option_3"
-    t.string "option_4"
     t.string "answer"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,14 +70,16 @@ ActiveRecord::Schema.define(version: 2021_10_08_121555) do
 
   create_table "student_answers", force: :cascade do |t|
     t.string "student_answer"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "question_id"
     t.bigint "assignment_id"
+    t.bigint "option_id"
+    t.bigint "completed_assignment_id"
     t.index ["assignment_id"], name: "index_student_answers_on_assignment_id"
+    t.index ["completed_assignment_id"], name: "index_student_answers_on_completed_assignment_id"
+    t.index ["option_id"], name: "index_student_answers_on_option_id"
     t.index ["question_id"], name: "index_student_answers_on_question_id"
-    t.index ["user_id"], name: "index_student_answers_on_user_id"
   end
 
   create_table "taught_classes", force: :cascade do |t|
@@ -103,10 +110,13 @@ ActiveRecord::Schema.define(version: 2021_10_08_121555) do
   add_foreign_key "assignments", "taught_classes"
   add_foreign_key "class_memberships", "taught_classes"
   add_foreign_key "class_memberships", "users"
+  add_foreign_key "completed_assignments", "assignments"
+  add_foreign_key "completed_assignments", "users"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "assignments"
   add_foreign_key "student_answers", "assignments"
+  add_foreign_key "student_answers", "completed_assignments"
+  add_foreign_key "student_answers", "options"
   add_foreign_key "student_answers", "questions"
-  add_foreign_key "student_answers", "users"
   add_foreign_key "taught_classes", "users"
 end
