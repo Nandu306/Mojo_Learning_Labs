@@ -9,7 +9,7 @@ class Question < ApplicationRecord
   validates :prompt, presence: true
   # validates :answer, presence: true
 
-  # accepts_nested_attributes_for :student_answers, allow_destroy: true
+  accepts_nested_attributes_for :student_answers
 
   abymize :options
 
