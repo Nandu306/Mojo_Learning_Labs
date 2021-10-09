@@ -53,29 +53,44 @@ class AssignmentsController < ApplicationController
   end
 
 
-  def publish
-    @assignment = Assignment.find(params[:id])
-    authorize @assignment
+  # def publish
+  #   @assignment = Assignment.find(params[:id])
+  #   authorize @assignment
 
-    if @assignment.update(status: 'published')
-      redirect_to taught_classes_path, notice: "Assignment published"
-    else
-      puts @assignment.errors.full_messages
-      render :new
-    end
+  #   if @assignment.update(status: 'published')
+  #     redirect_to taught_classes_path, notice: "Assignment published"
+  #   else
+  #     puts @assignment.errors.full_messages
+  #     render :new
+  #   end
+
+  # end
+
+
+  #  def submit_answer
+  #   @assignment = Assignment.find(params[:id])
+  #   @student_answer = @assignment.student_answers.build
+
+  #   @assignment.questions.each do |question|
+  #     @student_answer.student_answers.build(question_id: question.id)
+  #   end
+
+  #   if @assignment.update
+  #     redirect_to taught_classes_path, notice: "Assignment published"
+  #   else
+  #     render :new
+  #   end
+
+  # end
+
+  def new_completed_assignment
+
 
   end
 
 
-   def submit_answer
-    @assignment = Assignment.find(params[:id])
-    authorize @assignment
+  def create_completed_assignment
 
-    if @assignment.update
-      redirect_to taught_classes_path, notice: "Assignment published"
-    else
-      render :new
-    end
 
   end
 
@@ -87,16 +102,29 @@ class AssignmentsController < ApplicationController
     @class_memberships = current_user.class_memberships
   end
 
+
   def show
     @assignment = Assignment.find(params[:id])
     authorize @assignment
 
   end
 
+
   private
 
   def assignment_params
-    params.require(:assignment).permit(:topic, :deadline, :taught_class_id, questions_attributes: [:id, :prompt, :_destroy, options_attributes: [:id, :content, :_destroy] ])
+    params.require(:assignment).permit(
+      :topic,
+      :deadline,
+      :taught_class_id,
+      questions_attributes:
+      [
+        :id,
+        :prompt,
+        :_destroy,
+        options_attributes: [:id, :content, :_destroy]
+      ]
+        )
   end
 
 end
