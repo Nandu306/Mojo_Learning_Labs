@@ -1,23 +1,19 @@
 <%= simple_form_for @completed_assignment, url: create_completed_assignment_assignment_path(@assignment) do |f| %>
 
 
-<% @assignment.questions.each do |question| %>
+  <% @assignment.questions.each do |question| %>
 
-  <%= f.simple_fields_for :student_answers do |a| %>
-    <%= a.hidden_field :assignment_id, value: @assignment.id %>
+    <%= f.simple_fields_for :student_answers do |a| %>
+      <%= a.hidden_field :assignment_id, value: @assignment.id %>
 
-    <%= a.hidden_field :question_id, value: question.id %>
-    <%= a.label :prompt, label: question.prompt %>
-
-    <%# question.options.each do |option| %>
+      <%= a.hidden_field :question_id, value: question.id %>
+      <%= a.label :prompt, label: question.prompt %>
       <%= a.collection_radio_buttons :option_id, Option.all, :id, :content %>
-    <%# end %>
+
+    <% end %>
+
 
   <% end %>
-
-
-<% end %>
-
 
 <%= f.submit 'Submit' %>
 <% end %>
