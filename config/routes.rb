@@ -6,9 +6,12 @@ Rails.application.routes.draw do
       get '/class_students', to: 'taught_classes#class_students'
       resources :class_memberships, only: [ :create ], shallow: true
       resources :assignments, shallow: true do
-          # member do
-          #   post 'publish', to: 'assignments#publish'
-          # end
+          member do
+            # post 'publish', to: 'assignments#publish'
+            get 'new_completed_assignment', to: 'assignments#new_completed_assignment'
+            get 'create_completed_assignment', to: 'assignments#create_completed_assignment'
+          end
+        resources :student_answers, shallow: true
       end
     end
 

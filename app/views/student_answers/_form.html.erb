@@ -3,13 +3,15 @@
 
       <% @assignment.questions.each do |question| %>
 
-        <%= f.hidden_field :question_id, value: question.id %>
-        <%= f.label :prompt, label: question.prompt %>
-        <%#= f.input :student_answer, label:false %>
-        <%= f.simple_fields_for :student_answers do |a| %>
-          <%= a.hidden_field :id %>
-          <%= a.input :student_answer, label:false, input_html: { name: 'assignment[student_answers][][student_answer]' } %>
+      <%= f.simple_fields_for :student_answers do |a| %>
+          <%#= a.hidden_field :student_answer_id %>
+          <%= a.hidden_field :question_id, value: question.id %>
+          <%= a.label :prompt, label: question.prompt %>
+          <%= a.collection_radio_buttons :option_ids, question.options, :id, :content %>
+          <%#= a.radio_button :student_answer, label:false %>
         <% end %>
+
+
 
 
       <% end %>

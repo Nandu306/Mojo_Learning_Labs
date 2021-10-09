@@ -4,9 +4,6 @@ class StudentAnswersController < ApplicationController
     skip_authorization
 
     @assignment = Assignment.find(params[:assignment_id])
-
-
-
     @student_answer = StudentAnswer.new
 
 
@@ -17,13 +14,19 @@ class StudentAnswersController < ApplicationController
 
     @assignment = Assignment.find(params[:assignment_id])
 
+    @questions = @assignment.questions
+    @questions.each do |question|
+      @student_answer = StudentAnswer.new(student_answer_params)
+      @student_answer.user = current_user
+      @student_answer.question = question
+    end
 
-    @student_answer = StudentAnswer.new(student_answer_params)
-    @student_answer.user = current_user
+
 
     if @student_answer.save
       redirect_to root_path
     else
+      puts @student_answer.errors.full_messages
       render :new
     end
 
@@ -32,7 +35,7 @@ class StudentAnswersController < ApplicationController
   private
 
   def student_answer_params
-    params.require(:student_answer).permit(:assignment_id, :question_id, :student_answer)
+    params.require(:student_answer).permit(:assignment_id, :question_id, :student_answer, :option_ids)
   end
 
 end
