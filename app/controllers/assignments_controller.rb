@@ -12,7 +12,7 @@ class AssignmentsController < ApplicationController
     @taught_class = TaughtClass.find(params[:taught_class_id])
     @assignment = Assignment.new
     @assignment.taught_class = @taught_class
-    # @assignment.questions.build
+
     authorize @assignment
 
   end
@@ -52,36 +52,6 @@ class AssignmentsController < ApplicationController
 
   end
 
-
-  # def publish
-  #   @assignment = Assignment.find(params[:id])
-  #   authorize @assignment
-
-  #   if @assignment.update(status: 'published')
-  #     redirect_to taught_classes_path, notice: "Assignment published"
-  #   else
-  #     puts @assignment.errors.full_messages
-  #     render :new
-  #   end
-
-  # end
-
-
-  #  def submit_answer
-  #   @assignment = Assignment.find(params[:id])
-  #   @student_answer = @assignment.student_answers.build
-
-  #   @assignment.questions.each do |question|
-  #     @student_answer.student_answers.build(question_id: question.id)
-  #   end
-
-  #   if @assignment.update
-  #     redirect_to taught_classes_path, notice: "Assignment published"
-  #   else
-  #     render :new
-  #   end
-
-  # end
 
   def new_completed_assignment
     skip_authorization

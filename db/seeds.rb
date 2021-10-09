@@ -10,6 +10,8 @@
 puts "Preparing to seed data..."
 
 StudentAnswer.destroy_all
+Option.destroy_all
+CompletedAssignment.destroy_all
 Question.destroy_all
 Assignment.destroy_all
 ClassMembership.destroy_all
@@ -83,26 +85,100 @@ Forces.save
 
 # Questions
 
-Question_One = Question.find_or_initialize_by(prompt: 'What organ is responsible for respiration in mammals?', option_1: 'Heart', option_2: 'Eyes', option_3: 'Brain', option_4: 'Lungs', answer: 'Lungs', assignment: Respiration)
+Question_One = Question.find_or_initialize_by(prompt: 'What organ is responsible for respiration in mammals?', answer: 'Lungs', assignment: Respiration)
 Question_One.save
 
 
-Question_Two = Question.find_or_initialize_by(prompt: 'Which is responsible for the green colour of leaves?', option_1: 'Mitochondria', option_2: 'Ribosomes', option_3: 'Chorophyll', option_4: 'Xylem', answer: 'Chorophyll', assignment: Respiration)
+Question_Two = Question.find_or_initialize_by(prompt: 'Which is responsible for the green colour of leaves?', answer: 'Chorophyll', assignment: Respiration)
 Question_Two.save
 
-Question_Three = Question.find_or_initialize_by(prompt: 'Which two variables have an effect on force?', option_1: 'Mass and Acceleration', option_2: 'Weight and Speed', option_3: 'Mass and Speed', option_4: 'Weight and Acceleration', answer: 'Mass and Acceleration', assignment: Forces)
+Question_Three = Question.find_or_initialize_by(prompt: 'Which two variables have an effect on force?', answer: 'Mass and Acceleration', assignment: Forces)
 Question_Three.save
 
-Question_Four = Question.find_or_initialize_by(prompt: 'What is the negative particle in an atom?', option_1: 'Protons', option_2: 'Electrons', option_3: 'Neutrons', option_4: 'Molecules', answer: 'Electrons', assignment: Reactions)
+Question_Four = Question.find_or_initialize_by(prompt: 'What is the negative particle in an atom?', answer: 'Electrons', assignment: Reactions)
 Question_Four.save
 
-Question_Five = Question.find_or_initialize_by(prompt: 'What is the weight of a ball of mass 1 kg?', option_1: '20N', option_2: '10N', option_3: '15N', option_4: '1N', answer: '10N', assignment: Forces)
+Question_Five = Question.find_or_initialize_by(prompt: 'What is the weight of a ball of mass 1 kg?', answer: '10N', assignment: Forces)
 Question_Five.save
+
+
+# Options
+
+Option_One = Option.find_or_initialize_by(content: 'Heart', question: Question_One)
+Option_One.save
+
+Option_Two = Option.find_or_initialize_by(content:'Eyes', question: Question_One)
+Option_Two.save
+
+Option_Three = Option.find_or_initialize_by(content:'Brain', question: Question_One)
+Option_Three.save
+
+Option_Four = Option.find_or_initialize_by(content:'Lungs', question: Question_One)
+Option_Four.save
+
+
+Second_Option_One = Option.find_or_initialize_by(content: 'Mitochondria', question: Question_Two)
+Second_Option_One.save
+
+Second_Option_Two = Option.find_or_initialize_by(content:'Ribosomes', question: Question_Two)
+Second_Option_Two.save
+
+Second_Option_Three = Option.find_or_initialize_by(content:'Chorophyll', question: Question_Two)
+Second_Option_Three.save
+
+Second_Option_Four = Option.find_or_initialize_by(content:'Xylem', question: Question_Two)
+Second_Option_Four.save
+
+
+Third_Option_One = Option.find_or_initialize_by(content: 'Mass and acceleration', question: Question_Three)
+Third_Option_One.save
+
+Third_Option_Two = Option.find_or_initialize_by(content:'Weight and speed', question: Question_Three)
+Third_Option_Two.save
+
+Third_Option_Three = Option.find_or_initialize_by(content:'Mass and speed', question: Question_Three)
+Third_Option_Three.save
+
+Third_Option_Four = Option.find_or_initialize_by(content:'Weight and acceleration', question: Question_Three)
+Third_Option_Four.save
+
+
+Fourth_Option_One = Option.find_or_initialize_by(content: 'Protons', question: Question_Four)
+Fourth_Option_One.save
+
+Fourth_Option_Two = Option.find_or_initialize_by(content:'Electrons', question: Question_Four)
+Fourth_Option_Two.save
+
+Fourth_Option_Three = Option.find_or_initialize_by(content:'Neutrons', question: Question_Four)
+Fourth_Option_Three.save
+
+Fourth_Option_Four = Option.find_or_initialize_by(content:'Molecules', question: Question_Four)
+Fourth_Option_Four.save
+
+
+Fifth_Option_One = Option.find_or_initialize_by(content: '20N', question: Question_Five)
+Fifth_Option_One.save
+
+Fifth_Option_Two = Option.find_or_initialize_by(content:'10N', question: Question_Five)
+Fifth_Option_Two.save
+
+Fifth_Option_Three = Option.find_or_initialize_by(content:'15N', question: Question_Five)
+Fifth_Option_Three.save
+
+Fifth_Option_Four = Option.find_or_initialize_by(content:'1N', question: Question_Five)
+Fifth_Option_Four.save
+
+
+
+# Completed Assignments
+
+First_Assignment = CompletedAssignment.find_or_initialize_by(user: Pierre, assignment: Respiration)
+First_Assignment.save
 
 
 # Student Answers
 
-Pierre_Ans = StudentAnswer.find_or_initialize_by(user:Pierre, question: Question_One, student_answer: 'Heart', assignment: Respiration)
+Pierre_Ans = StudentAnswer.find_or_initialize_by(completed_assignment: First_Assignment, question: Question_One, option: Option_One)
 Pierre_Ans.save
 
 

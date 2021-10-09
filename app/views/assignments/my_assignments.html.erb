@@ -8,7 +8,14 @@
         <%= assignment.topic %>
         <%= assignment.deadline %>
 
-        <%= link_to 'Start assignment', new_completed_assignment_assignment_path(assignment) %>
+        <% if assignment.completed_assignments.present? %>
+          <p> You've completed this assignment </p>
+          <%#= link_to 'See your submission',  %>
+        <% else %>
+          <%= link_to 'Start assignment', new_completed_assignment_assignment_path(assignment) %>
+        <% end %>
+
+
 
 
       </div>
