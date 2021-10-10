@@ -10,14 +10,14 @@ class User < ApplicationRecord
   has_many :student_answers, through: :completed_assignments
   has_many :completed_assignments
 
+  belongs_to :school
+
 
   enum role: [:teacher, :student, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
   scope :students, -> { where role: "student" }
   scope :teachers, -> { where role: "teacher" }
-
-
 
 
 

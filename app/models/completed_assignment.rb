@@ -10,7 +10,7 @@ class CompletedAssignment < ApplicationRecord
     self.student_answers.each do |student_answer|
       score += 1 if student_answer.question.answer == student_answer.option.content
     end
-    p "#{(score.fdiv(self.assignment.questions.size) * 100)} %"
+    p score.fdiv(self.assignment.questions.size) * 100
   end
 
 end

@@ -17,28 +17,39 @@ Assignment.destroy_all
 ClassMembership.destroy_all
 TaughtClass.destroy_all
 User.destroy_all
+School.destroy_all
+
+
+
+# Schools
+
+Best = School.find_or_initialize_by(name: 'Best School', address: '123 Lane', country: 'UK')
+Best.save
+
+Second_Best = School.find_or_initialize_by(name: 'Second Best School', address: '125 Lane', country: 'UK')
+Second_Best.save
 
 
 
 # Users
 
-Mary = User.find_or_initialize_by(name: 'Mary Smith', email: 'mary@gmail.com', role: 'teacher', school_name: 'Best School')
+Mary = User.find_or_initialize_by(name: 'Mary Smith', email: 'mary@gmail.com', role: 'teacher', school: Best)
 Mary.password = 'qwerty'
 Mary.save
 
-Peter = User.find_or_initialize_by(name: 'Peter Silva', email: 'peter@gmail.com', role: 'teacher', school_name: 'Best School')
+Peter = User.find_or_initialize_by(name: 'Peter Silva', email: 'peter@gmail.com', role: 'teacher', school: Best)
 Peter.password = 'qwerty'
 Peter.save
 
-Sarah = User.find_or_initialize_by(name: 'Sarah Williams', email: 'sarah@gmail.com', role: 'student', school_name: 'Second Best School')
+Sarah = User.find_or_initialize_by(name: 'Sarah Williams', email: 'sarah@gmail.com', role: 'student', school: Second_Best)
 Sarah.password = 'qwerty'
 Sarah.save
 
-Pierre = User.find_or_initialize_by(name: 'Pierre Blanc', email: 'pierre@gmail.com', role: 'student', school_name: 'Best School')
+Pierre = User.find_or_initialize_by(name: 'Pierre Blanc', email: 'pierre@gmail.com', role: 'student', school: Best)
 Pierre.password = 'qwerty'
 Pierre.save
 
-Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role: 'student', school_name: 'Best School')
+Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role: 'student', school: Best)
 Chen.password = 'qwerty'
 Chen.save
 
@@ -180,6 +191,9 @@ First_Assignment.save
 
 Pierre_Ans = StudentAnswer.find_or_initialize_by(completed_assignment: First_Assignment, question: Question_One, option: Option_One)
 Pierre_Ans.save
+
+Pierre_Ans2 = StudentAnswer.find_or_initialize_by(completed_assignment: First_Assignment, question: Question_Two, option: Second_Option_Three)
+Pierre_Ans2.save
 
 
 puts "Finished seeding"

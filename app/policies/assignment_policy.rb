@@ -14,10 +14,30 @@ class AssignmentPolicy < ApplicationPolicy
   end
 
   def show?
-    user.teacher? || user.student?
+    user.teacher?
   end
 
-  def answer_assignment?
+  def update?
+    user.teacher?
+  end
+
+  def edit?
+    user.teacher?
+  end
+
+  def create_completed_assignment?
+    user.student?
+  end
+
+  def show_completed_assignment?
+    user.student?
+  end
+
+  def class_performance?
+    user.teacher?
+  end
+
+  def my_assignments?
     user.student?
   end
 
