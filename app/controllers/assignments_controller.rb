@@ -26,7 +26,7 @@ class AssignmentsController < ApplicationController
 
 
     if @assignment.save
-      redirect_to root_path
+      redirect_to assignment_path(@assignment)
     else
       puts @assignment.errors.full_messages
       render :new
@@ -35,14 +35,14 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
-    skip_authorization
     @assignment = Assignment.find(params[:id])
+    authorize @assignment
 
   end
 
   def update
-    skip_authorization
     @assignment = Assignment.find(params[:id])
+    authorize @assignment
 
      if @assignment.update(assignment_params)
       redirect_to taught_classes_path
@@ -54,7 +54,7 @@ class AssignmentsController < ApplicationController
 
 
   def new_completed_assignment
-    skip_authorization
+
     @assignment = Assignment.find(params[:id])
     @completed_assignment = @assignment.completed_assignments.build
 
@@ -62,22 +62,41 @@ class AssignmentsController < ApplicationController
       @completed_assignment.student_answers.build(question: question)
     end
 
+    authorize @assignment
 
   end
 
 
   def create_completed_assignment
-    skip_authorization
+
     @assignment = Assignment.find(params[:id])
     @completed_assignment = @assignment.completed_assignments.build(completed_assignment_params)
     @completed_assignment.user = current_user
 
     if @completed_assignment.save
-      redirect_to root_path
+      redirect_to show_completed_assignment_assignment_path(@assignment)
     else
       puts @completed_assignment.errors.full_messages
       render :new
     end
+
+    authorize @assignment
+
+  end
+
+  def show_completed_assignment
+
+    @assignment = Assignment.find(params[:id])
+    authorize @assignment
+
+  end
+
+  def class_performance
+
+    @assignment = Assignment.find(params[:id])
+    @completed_assignments = @assignment.completed_assignments.includes(:user)
+    authorize @assignment
+
 
   end
 

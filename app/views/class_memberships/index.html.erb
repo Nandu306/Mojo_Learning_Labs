@@ -1,4 +1,4 @@
-<h1> Your classes at <%= current_user.school_name %></h1>
+<h1> Your classes at <%= current_user.school.name %></h1>
 
 <% @class_memberships.each do |class_membership| %>
 
@@ -8,14 +8,4 @@
     <%= class_membership.taught_class.academic_year %>
   </div>
 
-
-
-
-   <%# if class_membership.taught_class.assignments.any? %>
-
-    <%#= link_to 'See all assignments set', class_memberships_path %>
-
-   <%# end %>
-
-
-  <% end %>
+ <% end %>

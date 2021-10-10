@@ -1,0 +1,11 @@
+<% @assignment.completed_assignments.includes(:assignment, :user).where(assignment_id: @assignment.id, user: current_user).each do |completed_assignment| %>
+  <%=  completed_assignment.assignment.topic %>
+  <%= "#{ completed_assignment.score.round(0) }%" %>
+  <%  completed_assignment.assignment.questions.each do |question| %>
+    <%= question.prompt %>
+    <% question.student_answers.includes(:completed_assignment).where(completed_assignment: completed_assignment).each do |student_answer| %>
+        <%= student_answer.option.content %>
+        <p> The correct answer is: <%= question.answer %> </p>
+    <% end %>
+  <% end %>
+<% end %>
