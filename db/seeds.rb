@@ -53,6 +53,12 @@ Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role
 Chen.password = 'qwerty'
 Chen.save
 
+Kumar = User.find_or_initialize_by(name: 'Kumar Das', email: 'kumar@gmail.com', role: 'teacher', school: Second_Best)
+Kumar.password = 'qwerty'
+Kumar.save
+
+
+
 
 # Taught Classes
 

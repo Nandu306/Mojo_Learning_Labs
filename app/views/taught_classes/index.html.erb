@@ -10,7 +10,7 @@
 
 <% @taught_classes.each do |taught_class| %>
 
-  <% if taught_class.user.school_name == current_user.school_name %>
+  <% if taught_class.user.school.name == current_user.school.name %>
 
     <div class="d-flex flex-column">
       <%= taught_class.year %>
