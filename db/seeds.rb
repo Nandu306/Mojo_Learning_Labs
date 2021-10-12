@@ -72,6 +72,9 @@ Physics.save
 Chemistry = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Chemistry', academic_year: '2021/2022', user: Peter)
 Chemistry.save
 
+Biology1 = TaughtClass.find_or_initialize_by(year: 'Year 7', subject: 'Biology', academic_year: '2021/2022', user: Kumar)
+Biology1.save
+
 
 # Class Memberships
 

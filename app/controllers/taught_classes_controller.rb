@@ -4,8 +4,8 @@ class TaughtClassesController < ApplicationController
   def index
     if current_user.teacher?
       @taught_classes = policy_scope(TaughtClass.includes(:user)).where(user: current_user)
-    else
-      @taught_classes = policy_scope(TaughtClass)
+    elsif current_user.student?
+      @taught_classes = policy_scope(TaughtClass.includes(:user))
     end
   end
 

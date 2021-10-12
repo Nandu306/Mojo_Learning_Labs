@@ -7,7 +7,7 @@ class ClassMembershipsController < ApplicationController
   # end
 
   def index
-    @class_memberships = policy_scope(ClassMembership.includes(:user)).where(user: current_user)
+    @class_memberships = policy_scope(ClassMembership.includes(:user, :taught_class)).where(user: current_user)
     authorize @class_memberships
   end
 
