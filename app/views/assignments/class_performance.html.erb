@@ -4,16 +4,24 @@
 
   <% @completed_assignments.each do |completed_assignment| %>
     <%= completed_assignment.user.name %>
-    <%= completed_assignment.score %>
+    <%= completed_assignment.score.round(0) %>
     <% total += completed_assignment.score %>
+
+    <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
+      <b> Q<%= index + 1  %> </b>
+      <%= question.question_score %>
+    <% end %>
+
   <% end %>
 
   <% average = total.fdiv(@completed_assignments.size) %>
 
-  <%= average %>
+  <%= average.round(0) %>
 
 <% else %>
 
   <p> No one has done the assignment yet </p>
 
 <% end %>
+
+
