@@ -12,6 +12,7 @@
     <h1> Student dashboard </h1>
     <%= link_to 'View my classes', class_memberships_path %>
     <%= link_to 'View my assignments', my_assignments_path %>
+    <%= link_to "View all classes at #{ current_user.school.name }", taught_classes_path %>
 
   </div>
 
