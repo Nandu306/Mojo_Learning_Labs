@@ -25,4 +25,10 @@ class ClassMembershipsController < ApplicationController
     end
   end
 
+  def my_assignments
+
+    @class_memberships = ClassMembership.all.includes(:user, :taught_class).where(user: current_user)
+    authorize @class_memberships
+  end
+
 end

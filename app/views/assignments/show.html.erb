@@ -1,7 +1,7 @@
 <div class="d-flex flex-column">
   <%= @assignment.taught_class.subject %>
 <%= @assignment.topic %>
-<%= @assignment.deadline %>
+<%= local_time(@assignment.deadline) %>
 </div>
 
 
