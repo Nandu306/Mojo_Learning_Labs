@@ -25,6 +25,10 @@ class AssignmentPolicy < ApplicationPolicy
     user.teacher?
   end
 
+  def new_completed_assignment?
+    user.student?
+  end
+
   def create_completed_assignment?
     user.student?
   end

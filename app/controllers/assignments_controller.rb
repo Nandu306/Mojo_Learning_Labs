@@ -103,8 +103,14 @@ class AssignmentsController < ApplicationController
 
 
   def my_assignments
-    skip_authorization
-    @class_memberships = current_user.class_memberships
+
+    @assignments = []
+
+    Assignment.all.each do |assignment|
+      @assignments << assignment.class_memberships
+    end
+
+    authorize @assignments
   end
 
 

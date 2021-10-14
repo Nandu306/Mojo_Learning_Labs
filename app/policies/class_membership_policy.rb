@@ -12,4 +12,8 @@ class ClassMembershipPolicy < ApplicationPolicy
   def index?
     user.student?
   end
+
+  def my_assignments?
+    user.student?
+  end
 end

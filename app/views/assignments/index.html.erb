@@ -17,7 +17,7 @@
   <% @assignments_set.each do |assignment_set| %>
     <div class="d-flex flex-column">
       <%= assignment_set.topic %>
-      <%= assignment_set.deadline %>
+      <%= local_time(assignment_set.deadline) %>
       <%= link_to 'See assignment', assignment_path(assignment_set) %>
       <%= link_to 'Show class performance', class_performance_assignment_path(assignment_set) %>
     </div>
