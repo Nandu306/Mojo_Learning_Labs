@@ -1,0 +1,12 @@
+.primary-button {
+  border: solid 2px black;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  width: 40%;
+  justify-content: center;
+}
+
+.primary-button:hover {
+  background-color: #d3d3d3;
+}

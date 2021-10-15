@@ -1,6 +1,6 @@
 <% if current_user.teacher? %>
   <div class="d-flex flex-column">
-    <h1> Teacher dashboard </h1>
+    <h1> Welcome <%= current_user.name %> </h1>
     <%= link_to 'Create a class', new_taught_class_path %>
     <%= link_to 'View my classes', taught_classes_path %>
     <%#= link_to 'View my assignments', taught_class_assignments_path %>
