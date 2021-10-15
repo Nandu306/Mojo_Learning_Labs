@@ -1,10 +1,133 @@
 <% if current_user.teacher? %>
-  <div class="d-flex flex-column">
-    <h1> Welcome <%= current_user.name %> </h1>
-    <%= link_to 'Create a class', new_taught_class_path %>
-    <%= link_to 'View my classes', taught_classes_path %>
-    <%#= link_to 'View my assignments', taught_class_assignments_path %>
+  <div class="container" style="padding:30px">
+    <div class="d-flex flex-column">
+      <br>
+
+      <div>
+        <div class="d-flex align-items-center">
+          <%= image_tag 'hand.png', style: 'width:5%' %>
+
+          <div style="overflow:hidden;width:2%"></div>
+
+          <div class="d-flex flex-column">
+            <h3> Welcome, <%= current_user.name %> </h3>
+            <%= link_to 'Create a class', new_taught_class_path, class: "primary-button", style: "text-decoration: none; color: black; width:80%;text-align:center;" %>
+          </div>
+
+        </div>
+        <br>
+      </div>
+
+      <br>
+
+
+      <div>
+        <div class="d-flex align-items-center">
+
+          <div class="d-flex flex-column">
+            <h3> Your classes at <%= current_user.school.name %> </h3>
+            <%= pluralize((TaughtClass.includes(:user).where(user: current_user).size),"class") %>
+          </div>
+
+        </div>
+
+        <%# colours = %w[#F20089,#FFBE09,#528BF4] %>
+
+
+        <% if TaughtClass.includes(:user).where(user: current_user).any? %>
+
+          <div class="row row-cols-1 row-cols-md-3 mt-4">
+            <% TaughtClass.includes(:user).where(user: current_user).each do |taught_class| %>
+
+              <div class="col mb-4 ">
+                <div class="card shadow-sm card-index" style = "border-radius: 10px;">
+                  <div class="card-body">
+                    <div class="card-text" style="display:flex; justify-content: space-between;">
+                      <div>
+                        <p style="margin-bottom: 0px;"> <%= taught_class.year  %> </p>
+                        <p style= "color: #767676; font-size: 12px;"> <%= taught_class.subject %> </p>
+                      </div>
+
+                      <div>
+                        <p> <%= taught_class.academic_year %> </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-footer">
+                    <small class="text-muted">
+                      <p> Class size: <%= taught_class.class_memberships.size %> </p>
+                      <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
+                    </small>
+                  </div>
+                </div>
+                </div>
+
+            <% end %>
+          </div>
+
+        <% else %>
+          <p> You haven't created any classes as yet </p>
+
+        <% end %>
+
+      </div>
+
+      <br>
+
+      <div>
+        <div class="d-flex align-items-center">
+          <%= image_tag 'assignment.png', style: 'width:5%' %>
+
+          <div style="overflow:hidden;width:2%"></div>
+
+          <div class="d-flex flex-column">
+            <h3> Your recent assignments </h3>
+            <p> <%= pluralize((current_user.assignments.size),"assignment") %> in total </p>
+          </div>
+
+        </div>
+
+
+
+        <% if current_user.assignments.any? %>
+
+          <div class="row row-cols-1 row-cols-md-3 mt-4">
+            <% current_user.assignments.order(created_at: :desc).each do |assignment| %>
+
+              <div class="col mb-4 ">
+                <div class="card shadow-sm card-index" style = "border-radius: 10px">
+                  <div class="card-body">
+                    <div class="card-text" style="display:flex; justify-content: space-between;">
+                      <div>
+                        <p style="margin-bottom: 0px;"> <%= assignment.topic  %> </p>
+                        <p style= "color: #767676; font-size: 12px;"> <%= local_time(assignment.deadline, '%B %e, %Y') %> </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-footer">
+                    <small class="text-muted">
+                      <p> Number completed: <%= pluralize(assignment.completed_assignments.size, 'student') %> </p>
+                      <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
+                    </small>
+                  </div>
+                </div>
+                </div>
+
+            <% end %>
+          </div>
+
+        <% else %>
+          <p> You haven't set any assignments as yet </p>
+        <% end %>
+
+      </div>
+
+    </div>
   </div>
+
+
 
 <% elsif current_user.student? %>
 
@@ -17,3 +140,7 @@
   </div>
 
 <% end %>
+
+
+
+
