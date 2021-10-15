@@ -1,1 +1,53 @@
 // Specific CSS for your home-page
+
+@media (max-width: 992px) {
+  .column {
+    vertical-align: middle;
+  }
+
+  .no-space {
+    // display:none;
+  }
+
+  .mobile-space {
+
+  }
+
+  .dimensions {
+    padding: 10px;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .column {
+    display:flex;
+    vertical-align: middle;
+    flex-direction: row-reverse;
+  }
+
+  .left-side {
+    width: 50%;
+    float:left;
+    position: relative;
+  }
+
+  .right-side {
+    width: 50%;
+    float:right;
+    vertical-align:middle;
+  }
+
+  .dimensions {
+    height:80vh;
+    width:100%;
+  }
+
+  .middle {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 55%;
+    left: 50%;
+    width: 80%;
+  }
+}
