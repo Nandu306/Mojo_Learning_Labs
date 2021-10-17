@@ -26,7 +26,10 @@ class Assignment < ApplicationRecord
   #   score += studentanswer.question_score
   # end
 
-
+  def student_percentage_completed
+    percentage = ((self.completed_assignments.size).fdiv(self.taught_class.class_memberships.size) * 100).round(0)
+    p "#{ percentage }%"
+  end
 
 
 end
