@@ -4,7 +4,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header border-0 text-center">
         <h5 class="modal-title" id="exampleModalLabel">Create a new class</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -13,10 +13,14 @@
       <div class="modal-body">
 
         <%= simple_form_for TaughtClass.new do |f| %>
-          <%= f.input :year %>
-          <%= f.input :subject %>
-          <%= f.input :academic_year %>
-          <%= f.button :submit, "Create a class", class: "btn btn-primary" %>
+          <div style="padding:20px;">
+            <%= f.input :year, label: "Year:", placeholder: "Year 8", label_html: { style: "font-weight:bold" } %>
+            <%= f.input :subject, label: "Subject:", placeholder: "Chemistry", label_html: { style: "font-weight:bold" } %>
+            <%= f.input :academic_year, label: "Academic Year:", placeholder: "2021/2022", label_html: { style: "font-weight:bold" } %>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center"> <%= f.button :submit, "Create class", class: "primary-button" %> </div>
+
         <% end %>
 
       </div>
