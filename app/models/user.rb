@@ -30,8 +30,13 @@ class User < ApplicationRecord
     self.role ||= :student
   end
 
-  def assignments_to_do
-    self.class_memberships.each { |class_membership| class_membership.taught_class.assignments }
+  def number_of_assignments_to_do
+    assignments = 0
+    self.class_memberships.each do |class_membership|
+      assignments += class_membership.taught_class.assignments.size
+    end
+
+    p assignments
   end
 
 end
