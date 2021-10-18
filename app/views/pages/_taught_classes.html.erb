@@ -1,0 +1,45 @@
+<% if TaughtClass.includes(:user).where(user: current_user).any? %>
+
+  <div class="row row-cols-1 row-cols-md-3 mt-4">
+    <% TaughtClass.includes(:user).where(user: current_user).limit(5).each do |taught_class| %>
+
+      <div class="col mb-4 ">
+        <div class="card shadow-sm card-index" style = "border-radius: 10px;border-left:solid 3px #4CC9F0 ">
+          <div class="card-body">
+
+                <div class="d-flex align-items-center">
+                  <%= image_tag "rocket.png", style: "width: 15%" %>
+                  <div style="overflow:hidden; width:5%"></div>
+
+                  <div class="card-text d-flex justify-content-between" style="width:100%;">
+                    <div>
+                      <p style="margin-bottom: 0px; font-weight:bold"> <%= taught_class.subject.capitalize %> </p>
+                      <p style= "color: #767676; font-size: 14px;"> <%= taught_class.year %> </p>
+                    </div>
+
+                    <div>
+                      <p> <%= taught_class.academic_year %> </p>
+                    </div>
+                  </div>
+                </div>
+
+          </div>
+
+          <div class="card-footer">
+            <small class="text-muted">
+              <p> Class size: <%= pluralize((taught_class.class_memberships.size),"student") %> </p>
+              <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
+            </small>
+          </div>
+        </div>
+        </div>
+
+    <% end %>
+  </div>
+<br>
+  <%= link_to 'View all', taught_classes_path, class: "secondary-button", style: "text-decoration:none; color:black" %>
+
+<% else %>
+  <p> You haven't created any classes as yet </p>
+
+<% end %>
