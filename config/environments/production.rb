@@ -2,6 +2,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+  ActionMailer::Base.smtp_settings = {
+  :port           => ENV['MAILGUN_SMTP_PORT'],
+  :address        => ENV['MAILGUN_SMTP_SERVER'],
+  :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+  :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+  :domain         => 'mojo-learning-labs.herokuapp.com', # UPDATE THIS VALUE WITH YOUR OWN APP
+  :authentication => :plain,
+}
+  ActionMailer::Base.delivery_method = :smtp
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

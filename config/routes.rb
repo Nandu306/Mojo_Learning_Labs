@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
 
   resources :class_memberships, only: [ :index ]
+  resources :demo_requests, only: [ :new, :create ]
 
   # resources :completed_assignments, only: [:index, :show]
 

@@ -35,6 +35,7 @@ gem 'devise'
 gem 'pundit', '~> 2.1', '>= 2.1.1'
 gem 'abyme'
 gem 'local_time'
+gem 'mail_form'
 
 
 gem 'autoprefixer-rails', '10.2.5'
