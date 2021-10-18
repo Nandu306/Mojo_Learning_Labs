@@ -1,12 +1,12 @@
 class DemoRequestsController < ApplicationController
+  skip_before_action :authenticate_user!
+  skip_after_action :verify_authorized
 
   def new
-    skip_authorization
     @demo_request = DemoRequest.new
   end
 
   def create
-    skip_authorization
     @demo_request = DemoRequest.new(params[:demo_request])
     @demo_request.request = request
     if @demo_request.deliver
