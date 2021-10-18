@@ -21,13 +21,9 @@ class Assignment < ApplicationRecord
   validates :topic, presence: true
   validates :deadline, presence: true
 
-  # def score
-  #   score = 0
-  #   score += studentanswer.question_score
-  # end
 
   def student_percentage_completed
-    percentage = ((self.completed_assignments.size).fdiv(self.taught_class.class_memberships.size) * 100).round(0)
+    percentage = ((self.completed_assignments.size).fdiv(self.taught_class.class_memberships.size) * 100).round()
     p "#{ percentage }%"
   end
 
