@@ -23,7 +23,7 @@ class Assignment < ApplicationRecord
 
 
   def student_percentage_completed
-    percentage = (self.completed_assignments.size).fdiv(self.taught_class.class_memberships.size)
+    percentage = (self.completed_assignments.size).fdiv(self.taught_class.class_memberships.size == 0 ? 1 : self.taught_class.class_memberships.size)
     p "#{ (percentage * 100).round() }%"
   end
 
