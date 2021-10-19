@@ -16,7 +16,7 @@ class Question < ApplicationRecord
 
  def question_score
     score = 0
-    self.student_answers.each do |student_answer|
+    self.student_answers.includes(:question).each do |student_answer|
       score += 1 if student_answer.question.answer == student_answer.option.content
     end
     p score

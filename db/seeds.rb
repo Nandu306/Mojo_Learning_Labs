@@ -41,15 +41,15 @@ Peter = User.find_or_initialize_by(name: 'Peter Silva', email: 'peter@gmail.com'
 Peter.password = 'qwerty'
 Peter.save
 
-Sarah = User.find_or_initialize_by(name: 'Sarah Williams', email: 'sarah@gmail.com', role: 'student', school: Second_Best)
+Sarah = User.find_or_initialize_by(name: 'Sarah Williams', email: 'sarah@gmail.com', role: 'student', year: 'Year 7', school: Second_Best)
 Sarah.password = 'qwerty'
 Sarah.save
 
-Pierre = User.find_or_initialize_by(name: 'Pierre Blanc', email: 'pierre@gmail.com', role: 'student', school: Best)
+Pierre = User.find_or_initialize_by(name: 'Pierre Blanc', email: 'pierre@gmail.com', role: 'student', year: 'Year 7', school: Best)
 Pierre.password = 'qwerty'
 Pierre.save
 
-Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role: 'student', school: Best)
+Chen = User.find_or_initialize_by(name: 'Chen Wu', email: 'chen@gmail.com', role: 'student', year: 'Year 7', school: Best)
 Chen.password = 'qwerty'
 Chen.save
 

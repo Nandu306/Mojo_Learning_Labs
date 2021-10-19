@@ -36,6 +36,7 @@ gem 'pundit', '~> 2.1', '>= 2.1.1'
 gem 'abyme'
 gem 'local_time'
 gem 'mail_form'
+# gem 'bullet', group: 'development'
 
 
 gem 'autoprefixer-rails', '10.2.5'
@@ -56,6 +57,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 group :test do

@@ -8,7 +8,7 @@
 
 
 
-<% @taught_classes.each do |taught_class| %>
+<% @taught_classes.includes(user: :school).each do |taught_class| %>
 
   <% if taught_class.user.school.name == current_user.school.name %>
 
