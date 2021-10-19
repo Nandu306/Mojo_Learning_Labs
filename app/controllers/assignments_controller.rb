@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
   def index
 
     @taught_class = TaughtClass.find(params[:taught_class_id])
-    @assignments_set = policy_scope(Assignment.includes(:taught_class)).where(taught_class: @taught_class)
+    @assignments_set = policy_scope(Assignment).where(taught_class: @taught_class)
 
   end
 

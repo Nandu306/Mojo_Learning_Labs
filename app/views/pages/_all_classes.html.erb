@@ -1,7 +1,7 @@
-<% if TaughtClass.where(user: current_user).any? %>
+<% if TaughtClass.includes(:user).select { |taught_class| taught_class.user.school.name == current_user.school.name && taught_class.year == current_user.year }.any? %>
 
   <div class="row row-cols-1 row-cols-md-3 mt-4">
-    <% TaughtClass.where(user: current_user).limit(5).each do |taught_class| %>
+    <% TaughtClass.select { |taught_class| taught_class.user.school.name == current_user.school.name && taught_class.year == current_user.year }.each do |taught_class| %>
 
       <div class="col mb-4 ">
         <div class="card shadow-sm card-index" style = "border-radius: 10px;border-left:solid 3px #4CC9F0 ">
@@ -14,7 +14,7 @@
                   <div class="card-text d-flex justify-content-between" style="width:100%;">
                     <div>
                       <p style="margin-bottom: 0px; font-weight:bold"> <%= taught_class.subject.capitalize %> </p>
-                      <p style= "color: #767676; font-size: 14px;"> <%= taught_class.year %> </p>
+                      <p style= "color: #767676; font-size: 14px;"> <%= taught_class.year.capitalize %> </p>
                     </div>
 
                     <div>
@@ -27,8 +27,14 @@
 
           <div class="card-footer">
             <small class="text-muted">
-              <p> Class size: <%= pluralize((taught_class.class_memberships.size),"student") %> </p>
-              <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
+              <p> Class size: <%#= pluralize((taught_class.class_memberships.size),"student") %> </p>
+
+              <% if !ClassMembership.includes(:taught_class).where(user: current_user, taught_class: taught_class).present? %>
+                <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true  %>
+              <% else %>
+                <p> You've joined this class </p>
+              <% end %>
+
             </small>
           </div>
         </div>
@@ -36,10 +42,10 @@
 
     <% end %>
   </div>
-<br>
+  <br>
   <%= link_to 'View all', taught_classes_path, class: "secondary-button", style: "text-decoration:none; color:black" %>
 
 <% else %>
-  <p> You haven't created any classes as yet </p>
-
+  <p> No classes have been added yet </p>
 <% end %>
+

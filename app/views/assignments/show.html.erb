@@ -6,7 +6,7 @@
 
 
 
-<% @assignment.questions.each do |question| %>
+<% @assignment.questions.includes(:options).each do |question| %>
 <%= question.prompt %>
   <% question.options.each do |option| %>
     <%= radio_button_tag question.id, option.id %>

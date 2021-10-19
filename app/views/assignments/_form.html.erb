@@ -5,7 +5,7 @@
 
 <%= f.abyme_for(:questions, partial: 'assignments/question_fields') do |abyme| %>
     <%= abyme.records %>
-    <%= abyme.new_records %>
+    <%= abyme.new_records(position: :start) %>
     <%= add_associated_record %>
 <% end %>
 

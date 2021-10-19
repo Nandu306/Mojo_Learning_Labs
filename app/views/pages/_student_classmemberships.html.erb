@@ -1,7 +1,7 @@
-<% if ClassMembership.includes(:user).where(user: current_user).any? %>
+<% if ClassMembership.where(user: current_user).any? %>
 
   <div class="row row-cols-1 row-cols-md-3 mt-4">
-    <% ClassMembership.includes(:user, :taught_class).where(user: current_user).limit(5).each do |class_membership| %>
+    <% ClassMembership.includes([:taught_class]).where(user: current_user).limit(5).each do |class_membership| %>
 
       <div class="col mb-4 ">
         <div class="card shadow-sm card-index" style = "border-radius: 10px;border-left:solid 3px #4CC9F0 ">
