@@ -1,0 +1,14 @@
+
+<div class="card mt-3 mb-3 border border-dark shadow-sm" style ="width: 100%;border-radius: 20px;">
+  <div class="card-body">
+    <%= simple_form_for ([@taught_class, @assignment]) do |f| %>
+      <div class="container">
+        <%= f.input :topic %>
+        <%= f.input :deadline %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
