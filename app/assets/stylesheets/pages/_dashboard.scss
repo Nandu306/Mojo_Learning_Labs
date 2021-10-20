@@ -1,0 +1,19 @@
+
+
+@media (max-width: 480px) {
+ .hand-size {
+  width: 15%;
+ }
+}
+
+@media (min-width: 768px) {
+ .hand-size {
+  width: 10%;
+ }
+}
+
+@media (min-width: 992px) {
+ .hand-size {
+  width: 5%;
+ }
+}
