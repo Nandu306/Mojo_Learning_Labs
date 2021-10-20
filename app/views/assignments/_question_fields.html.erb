@@ -1,9 +1,9 @@
-<%= f.input :prompt %>
+<%= f.input :prompt, label: 'Question prompt:' %>
 <%= f.hidden_field :_destroy %>
 <%#= f.hidden_field :assignment_id, value: @assignment.id %>
 <%= remove_associated_record %>
 
-<%= f.abyme_for(:options, partial: 'assignments/student_answer_fields') do |abyme| %>
+<%= f.abyme_for(:options, partial: 'assignments/student_answer_fields', limit: 4) do |abyme| %>
     <%= abyme.records %>
     <%= abyme.new_records(position: :start) %>
     <%= add_associated_record %>
