@@ -1,7 +1,7 @@
 <% if current_user.assignments.any? %>
 
   <div class="row row-cols-1 row-cols-md-3 mt-4">
-    <% current_user.assignments.order(created_at: :desc).limit(5).each do |assignment| %>
+    <% current_user.assignments.includes(:taught_class).order(created_at: :desc).limit(5).each do |assignment| %>
 
         <div class="col mb-4 ">
           <div class="card shadow-sm card-index" style = "border-radius: 10px; border-left:solid 3px #11A191">

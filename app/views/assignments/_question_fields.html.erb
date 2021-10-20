@@ -1,12 +1,19 @@
 <%= f.input :prompt, label: 'Question prompt:' %>
 <%= f.hidden_field :_destroy %>
-<%#= f.hidden_field :assignment_id, value: @assignment.id %>
-<%= remove_associated_record %>
+
+<div class="d-flex align-items-end">
+  <%= remove_associated_record(tag: :div) do %>
+    <%= image_tag 'book.png', style: "width:5%;display:flex; align-item:end" %>
+  <% end %>
+</div>
+
+
+<br>
 
 <%= f.abyme_for(:options, partial: 'assignments/student_answer_fields', limit: 4) do |abyme| %>
     <%= abyme.records %>
-    <%= abyme.new_records(position: :start) %>
-    <%= add_associated_record %>
+    <%= abyme.new_records %>
+    <%= add_associated_record(content: 'Add an answer option', html: { class: 'secondary-button' }) %>
     <%#= f.hidden_field :assignment_id, value: @assignment.id %>
 <% end %>
 
