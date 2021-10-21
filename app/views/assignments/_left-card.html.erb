@@ -1,4 +1,4 @@
-<div class="card mt-3 mb-3 border border-dark shadow-sm mx-auto" style ="width:100%; border-radius: 20px;">
+<div class="card mt-3 mb-3 border border-dark shadow-sm mx-auto" style ="width:50%; height:20%;border-radius: 20px;">
   <div class="card-body">
     <p class="text-center" style="font-weight:bold;"> Setting an assignment </p>
 
@@ -8,13 +8,9 @@
       <li> Bullet point 1 </li>
     </ul>
 
-
-
-    <%= simple_form_for ([@taught_class, @assignment]) do |f| %>
       <div style="display: flex; justify-content: center; align-items: center;">
         <%= f.button :submit, "Set assignment", class: "primary-button" %>
       </div>
-    <% end %>
 
   </div>
 </div>
