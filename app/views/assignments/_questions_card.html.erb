@@ -1,12 +1,12 @@
 
-<div class="card mt-3 mb-3 border border-dark shadow-sm" style ="width: 100%;border-radius: 20px;">
+<div class="card mt-3 mb-3 border border-dark shadow-sm" style ="width: 100%;border-radius: 20px;" data-addquestion-target="card">
   <div class="card-body">
       <div>
         <%= f.abyme_for(:questions, partial: 'assignments/question_fields') do |abyme| %>
           <%= abyme.records %>
           <%= abyme.new_records %>
-          <%= add_associated_record(content: 'Add a question', html: { class: 'secondary-button' }) %>
-      <% end %>
+          <%= add_associated_record(content: 'Add', html: { class: 'secondary-button' }) %>
+        <% end %>
 
       </div>
 

@@ -9,3 +9,5 @@ application.register("hello", HelloController)
 import { AbymeController } from 'abyme';
 application.register('abyme', AbymeController);
 
+import AddQuestionController from "./addquestion_controller"
+application.register("addquestion", AddQuestionController)
