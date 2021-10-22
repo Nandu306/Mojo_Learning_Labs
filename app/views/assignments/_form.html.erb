@@ -1,7 +1,7 @@
 <%= simple_form_for ([@taught_class, @assignment]) do |f| %>
 
   <div class="container" style="padding-left:10%; padding-right:10%;">
-      <div class="d-flex">
+      <div class="d-flex" >
 
           <%= render partial: "left-card", locals: { f: f } %>
 
@@ -10,7 +10,13 @@
           <div class="d-flex flex-column" style="width:100%">
             <p class="mt-3" style="font-weight:bold;margin:0px;"> Assignment details </p>
             <%= render partial: "assignment_details_card", locals: { f: f } %>
-            <p style="font-weight:bold;margin:0px;"> Questions </p>
+
+            <div class="d-flex justify-content-between">
+              <p style="font-weight:bold;margin:0px;"> Questions </p>
+              <!-- <button data-action="click->addquestion#show"> Add </button> -->
+
+            </div>
+
             <%= render partial: "questions_card", locals: { f: f } %>
           </div>
 

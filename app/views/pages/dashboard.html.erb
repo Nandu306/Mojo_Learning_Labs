@@ -104,7 +104,7 @@
         <div class="d-flex flex-column mt-4">
           <h4 style="font-weight:bold;"> Assignments set </h4>
           <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
-          <p class="mt-2"> <%= pluralize((current_user.number_of_assignments_to_do),"assignment") %> </p>
+          <p class="mt-2"> <%= pluralize((current_user.total_number_of_assignments_given),"assignment") %> </p>
         </div>
 
         <%= render "student_assignments" %>
