@@ -6,7 +6,7 @@ class CreateAssignments < ActiveRecord::Migration[6.0]
       t.integer :status
       t.datetime :deadline
       t.references :question, null: false, foreign_key: true
-      t.references :user, null: false, foreign_key: true
+      t.references :user, null: true, foreign_key: true
       t.references :taught_class, null: false, foreign_key: true
 
       t.timestamps
