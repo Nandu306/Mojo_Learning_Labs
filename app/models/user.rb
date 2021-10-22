@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :taught_classes, dependent: :destroy
-  has_many :assignments, through: :taught_classes, source: :assignments
+  has_many :assignments, through: :taught_classes
   has_many :class_memberships, dependent: :destroy
   has_many :student_answers, through: :completed_assignments
   has_many :completed_assignments
