@@ -1,7 +1,7 @@
 <% if current_user.assignments.any? %>
 
   <div class="row row-cols-1 row-cols-md-3 mt-4">
-    <% current_user.assignments.includes(:taught_class).order(created_at: :desc).limit(5).each do |assignment| %>
+    <% current_user.assignments.includes(:taught_class).order(created_at: :desc).limit(10).each do |assignment| %>
 
         <div class="col mb-4 ">
           <div class="card shadow-sm card-index" style = "border-radius: 10px; border-left:solid 3px #11A191">
@@ -26,9 +26,17 @@
             </div>
 
             <div class="card-footer">
-              <small class="text-muted">
+              <small class="text-muted text-center">
                 <p> Completed: <%= assignment.student_percentage_completed %> </p>
-                <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
+                <div class="d-flex justify-content-around">
+
+                  <%= link_to 'View performance', "#", class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"%>
+
+                  <div style="overflow:hidden; width: 2%;"></div>
+
+                  <%= link_to 'View assignment', assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"%>
+                </div>
+
               </small>
             </div>
 

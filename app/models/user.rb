@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   def total_number_of_assignments_given
     assignments = 0
-    self.class_memberships.each do |class_membership|
+    self.class_memberships.includes(:taught_class).each do |class_membership|
       assignments += class_membership.taught_class.assignments.size
     end
 
@@ -41,15 +41,12 @@ class User < ApplicationRecord
 
 
   def number_of_assignments_still_to_complete
-    number = 0
 
-    self.class_memberships.includes(:taught_class).each do |class_membership|
-      if class_membership.taught_class.assignments.any?
-         class_membership.taught_class.assignments.each do |assignment|
-           number += (class_membership.taught_class.assignments.size - assignment.completed_assignments.size)
-         end
-      end
-    end
+    total_assignments = self.total_number_of_assignments_given
+
+    assignments_completed = self.completed_assignments.size
+
+    number = total_assignments - assignments_completed
 
     p number
   end

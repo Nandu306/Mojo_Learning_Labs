@@ -1,20 +1,29 @@
-<%= f.input :prompt, label: 'Question prompt:' %>
-<%= f.input :answer, label: 'Correct answer:' %>
-<%= f.hidden_field :_destroy %>
+<div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px;" data-addquestion-target="card">
+  <div class="card-body">
 
-<div class="d-flex align-items-end">
-  <%= remove_associated_record(tag: :div) do %>
-    <%= image_tag 'book.png', style: "width:5%;display:flex; align-item:end" %>
+    <%= f.input :prompt, label: 'Question prompt:' %>
+    <%= f.input :answer, label: 'Correct answer:' %>
+    <%= f.hidden_field :_destroy %>
+
+  </div>
+</div>
+
+<div>
+  <%= remove_associated_record(tag: :div, html: { class: "d-flex justify-content-end" }) do %>
+    <%= image_tag 'trash-can.svg' %>
   <% end %>
 </div>
 
 
 <br>
 
-<%= f.abyme_for(:options, partial: 'assignments/student_answer_fields', limit: 4) do |abyme| %>
+<div class="text-center" style="padding:20px;">
+  <%= f.abyme_for(:options, partial: 'assignments/student_answer_fields', limit: 4) do |abyme| %>
     <%= abyme.records %>
     <%= abyme.new_records %>
-    <%= add_associated_record(content: 'Add an answer option', html: { class: 'secondary-button' }) %>
-    <%#= f.hidden_field :assignment_id, value: @assignment.id %>
-<% end %>
+    <%= add_associated_record(content: 'Add an answer option', html: { class: 'secondary-button', style: 'width: 50%' }) %>
+  <% end %>
+</div>
+
+
 

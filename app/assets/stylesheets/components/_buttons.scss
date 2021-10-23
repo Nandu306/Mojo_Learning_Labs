@@ -16,7 +16,7 @@
 
 
 .secondary-button {
-  border: solid 1px black;
+  border: solid 1px grey;
   background-color: #ededed;
   border-radius: 50px;
   padding: 8px;
@@ -28,4 +28,19 @@
 
 .secondary-button:hover {
   background-color:lightgray;
+}
+
+.tertiary-button {
+  border: solid 1px lightgray;
+  background-color: #ededed;
+  border-radius: 50px;
+  padding: 5px;
+  width: 150px;
+  justify-content: center;
+  display: inline-block;
+  text-align: center;
+}
+
+.tertiary-button:hover {
+  background-color: lightgray;
 }
