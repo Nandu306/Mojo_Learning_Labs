@@ -132,6 +132,7 @@ class AssignmentsController < ApplicationController
       [
         :id,
         :prompt,
+        :answer,
         :_destroy,
         options_attributes: [:id, :content, :_destroy]
       ]

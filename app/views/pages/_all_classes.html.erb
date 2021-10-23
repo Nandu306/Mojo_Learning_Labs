@@ -27,12 +27,17 @@
 
           <div class="card-footer">
             <small class="text-muted">
-              <p> Class size: <%#= pluralize((taught_class.class_memberships.size),"student") %> </p>
+              <p> Class size: <%= pluralize((taught_class.class_memberships.size),"student") %> </p>
 
               <% if !ClassMembership.includes(:taught_class).where(user: current_user, taught_class: taught_class).present? %>
-                <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true  %>
+                <div class="d-flex align-items-center justify-content-center">
+                  <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true, class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"  %>
+                </div>
+
               <% else %>
-                <p> You've joined this class </p>
+                <div class="d-flex align-items-center justify-content-center">
+                  <%= link_to 'Joined class', '#', class: "tertiary-button", style: "text-decoration:none; color:grey;font-weight:bold"  %>
+                </div>
               <% end %>
 
             </small>

@@ -6,7 +6,6 @@ class StudentAnswer < ApplicationRecord
 
 
 
-
   def correct
     self.student_answer == question.answer
   end

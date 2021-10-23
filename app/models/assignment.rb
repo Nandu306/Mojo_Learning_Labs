@@ -2,7 +2,7 @@ class Assignment < ApplicationRecord
 
   include Abyme::Model
 
-  belongs_to :taught_class
+  belongs_to :taught_class, counter_cache: true
   has_many :questions, dependent: :destroy, inverse_of: :assignment
   has_many :student_answers, through: :questions
   has_many :options, through: :questions

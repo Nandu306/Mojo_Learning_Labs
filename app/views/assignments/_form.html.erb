@@ -13,11 +13,14 @@
 
             <%= f.abyme_for(:questions, partial: 'assignments/question_fields') do |abyme| %>
 
-              <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center justify-content-between">
                 <p style="font-weight:bold;margin:0px;"> Questions </p>
                 <!-- <button type="button" data-action="click->addquestion#show"> Add </button> -->
+                <!-- <div style="overflow:hidden; width:10%"></div> -->
                 <div data-action="click->addquestion#show">
-                  <%= add_associated_record(content: 'Add', html: { class: 'secondary-button' } ) %>
+                  <%= add_associated_record(tag: :div, html: {class: "d-flex justify-content-end" }) do %>
+                    <%= image_tag 'add_circle_outline.svg' %>
+                  <% end %>
                 </div>
 
 
@@ -31,14 +34,13 @@
 
                       <div>
                         <%#= f.abyme_for(:questions, partial: 'assignments/question_fields') do |abyme| %>
-                        <div class="card mt-3 mb-3 border border-dark shadow-sm d-none" style ="width: 100%;border-radius: 20px;" data-addquestion-target="card">
+                        <div class=" d-none" style ="width: 100%;border-radius: 20px;" data-addquestion-target="card">
                           <div class="card-body">
                             <%= abyme.records %>
                             <%= abyme.new_records %>
                           <%#= add_associated_record(content: 'Add', html: { class: 'secondary-button' }) %>
                           </div>
                         </div>
-
                       </div>
 
 

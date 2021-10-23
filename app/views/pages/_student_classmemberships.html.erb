@@ -27,7 +27,7 @@
 
           <div class="card-footer">
             <small class="text-muted">
-              <p> Class size: <%#= pluralize((taught_class.class_memberships.size),"student") %> </p>
+              <p> Class size: <%= pluralize((class_membership.taught_class.class_memberships.size),"student") %> </p>
               <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
             </small>
           </div>

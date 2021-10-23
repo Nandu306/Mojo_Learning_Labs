@@ -4,5 +4,7 @@ class Option < ApplicationRecord
 
   accepts_nested_attributes_for :student_answers
 
+  validates :content, presence: true
+
 
 end
