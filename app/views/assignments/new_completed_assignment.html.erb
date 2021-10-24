@@ -1,13 +1,61 @@
 <%= simple_form_for @completed_assignment, url: create_completed_assignment_assignment_path(@assignment) do |f| %>
 
-  <%= f.simple_fields_for :student_answers do |a| %>
+  <div class="container" style="padding-left:10%; padding-right:10%;">
 
-      <%= a.hidden_field :assignment_id, value: @assignment.id %>
-      <%= a.hidden_field :question_id, value: a.object.question.id %>
-      <%= a.label :prompt, label: a.object.question.prompt %>
-      <%= a.collection_radio_buttons :option_id, a.object.question.options, :id, :content %>
+    <div class="d-flex mt-5">
+      <h4 style="font-weight:bold;"> <%= @completed_assignment.assignment.taught_class.subject %>, </h4>
+      <div style="overflow:hidden; width:1%"></div>
+      <h4 style="font-weight:bold;"> <%= @completed_assignment.assignment.taught_class.year %> </h4>
+    </div>
 
-  <% end %>
+    <h4 class="text-muted"> <%= @completed_assignment.assignment.topic %> </h4>
 
-<%= f.submit 'Submit' %>
+    <small>
+      <p class= "text-muted"> Due: <%= local_time(@completed_assignment.assignment.deadline) %> </p>
+    </small>
+
+
+    <div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px; padding: 20px;">
+      <div class="card-body">
+
+
+
+          <%= f.simple_fields_for :student_answers do |a| %>
+
+              <%= a.hidden_field :assignment_id, value: @assignment.id %>
+              <%= a.hidden_field :question_id, value: a.object.question.id %>
+              <b> <%= a.options[:child_index] + 1 %>. </b>
+              <b> <%= a.label :prompt, label: a.object.question.prompt %> </b>
+
+
+
+              <div class="d-flex flex-column form-check" style="margin-right: 2px;">
+                <%= a.collection_radio_buttons :option_id, a.object.question.options, :id, :content, input_html: { class: "form-check-input"}, label_html: { class: "form-check-label"} %>
+              </div>
+
+
+
+              <br>
+
+          <% end %>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <small>
+      <p class="text-muted"> Please check your answers carefully. You won't be able to edit them once you submit. </p>
+    </small>
+
+    <%= f.submit 'Submit', class: "primary-button" %>
+    <br>
+  </div>
+
 <% end %>
+
+
+

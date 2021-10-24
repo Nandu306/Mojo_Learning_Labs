@@ -28,4 +28,14 @@ class Assignment < ApplicationRecord
   end
 
 
+  def class_average
+    total = 0
+    self.completed_assignments.each do |completed_assignment|
+      total += completed_assignment.score
+    end
+    average = total.fdiv(self.completed_assignments.size)
+    p average.round()
+  end
+
+
 end

@@ -33,10 +33,16 @@
                     <small class="text-muted">
                       <% if assignment.completed_assignments.where(user: current_user, assignment: assignment).any? %>
                           <p> Completed: Yes </p>
+                           <div class="d-flex align-items-center justify-content-center">
+                            <%= link_to 'View result', show_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold" %>
+                          </div>
                       <% else %>
                           <p> Completed: No </p>
+                          <div class="d-flex align-items-center justify-content-center">
+                            <%= link_to 'Complete assignment', new_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold" %>
+                          </div>
+
                       <% end %>
-                      <%= link_to 'See more details', style: "text-decoration: none; color: #767676;" %>
 
                     </small>
                   </div>
