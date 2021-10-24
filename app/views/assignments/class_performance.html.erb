@@ -1,27 +1,58 @@
-<% if @completed_assignments.present? %>
+<div class="container">
+    <% if @completed_assignments.present? %>
 
-  <% total = 0 %>
+      <% @completed_assignments.each do |completed_assignment| %>
 
-  <% @completed_assignments.each do |completed_assignment| %>
-    <%= completed_assignment.user.name %>
-    <%= completed_assignment.score.round(0) %>
-    <% total += completed_assignment.score %>
+        <div class="d-flex mt-5">
+          <h4 style="font-weight:bold;"> <%= completed_assignment.assignment.taught_class.subject %>, </h4>
+          <div style="overflow:hidden; width:1%"></div>
+          <h4 style="font-weight:bold;"> <%= completed_assignment.assignment.taught_class.year %> </h4>
+        </div>
 
-    <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
-      <b> Q<%= index + 1  %> </b>
-      <%= question.question_score %>
-    <% end %>
+        <h4 class="text-muted"> <%= completed_assignment.assignment.topic %> </h4>
+
+        <p class="text-muted"> Class average: <%= completed_assignment.assignment.class_average %>% </p>
+
+
+
+        <div class="card mt-3 mb-3 border border-dark shadow-sm mx-auto" style ="width:100%;border-radius: 20px; padding:20px;">
+          <div class="card-body">
+
+            <table class="table">
+
+              <thead>
+                <tr>
+                  <th scope="col"> Student </th>
+                  <th scope="col"> Score </th>
+                  <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
+                    <th scope="col"> Q<%= index + 1  %> </th>
+                  <% end %>
+                </tr>
+              </thead>
+
+              <tbody>
+                  <tr>
+                    <td scope="row"> <%= completed_assignment.user.name %> </td>
+                    <td> <%= completed_assignment.score.round() %>% </td>
+                    <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
+                      <td> <%= question.question_score %> </td>
+                    <% end %>
+                  </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+
+      <% end %>
+
+  <% else %>
+
+    <p> No one has done the assignment yet </p>
 
   <% end %>
 
-  <% average = total.fdiv(@completed_assignments.size) %>
-
-  <%= average.round(0) %>
-
-<% else %>
-
-  <p> No one has done the assignment yet </p>
-
-<% end %>
+</div>
 
 

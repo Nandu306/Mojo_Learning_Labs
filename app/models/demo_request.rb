@@ -4,12 +4,14 @@ class DemoRequest < MailForm::Base
   attribute :message
   attribute :nickname,  captcha: true
 
+  validates :message, presence:true
+
   # Declare the e-mail headers. It accepts anything the mail method
   # in ActionMailer accepts.
   def headers
     {
       :subject => "Contact Form Inquiry",
-      :to => "your.email@address.com",
+      :to => "enquiries@mojolearninglabs.com",
       :from => %("#{name}" <#{email}>)
     }
   end

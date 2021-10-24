@@ -104,7 +104,17 @@
         <div class="d-flex flex-column mt-4">
           <h4 style="font-weight:bold;"> Assignments set </h4>
           <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
-          <p class="mt-2"> <%= pluralize((current_user.total_number_of_assignments_given),"assignment") %> </p>
+
+          <div class="d-flex">
+
+            <p class="mt-2"> <%= pluralize((current_user.total_number_of_assignments_given),"assignment") %> </p>
+
+            <% if CompletedAssignment.where(user: current_user).any? %>
+              <p class="mt-2">, <%= current_user.number_of_assignments_still_to_complete %> to complete </p>
+            <% end %>
+
+          </div>
+
         </div>
 
         <%= render "student_assignments" %>

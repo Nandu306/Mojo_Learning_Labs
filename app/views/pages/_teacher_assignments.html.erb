@@ -30,7 +30,7 @@
                 <p> Completed: <%= assignment.student_percentage_completed %> </p>
                 <div class="d-flex justify-content-around">
 
-                  <%= link_to 'View performance', "#", class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"%>
+                  <%= link_to 'View performance', class_performance_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"%>
 
                   <div style="overflow:hidden; width: 2%;"></div>
 
