@@ -29,8 +29,8 @@
 
 
 
-              <div class="d-flex flex-column form-check" style="margin-right: 2px;">
-                <%= a.collection_radio_buttons :option_id, a.object.question.options, :id, :content, input_html: { class: "form-check-input"}, label_html: { class: "form-check-label"} %>
+              <div class="d-flex flex-column form-check">
+                <%= a.collection_radio_buttons :option_id, a.object.question.options, :id, :content, item_label_class: 'ml-2' %>
               </div>
 
 
