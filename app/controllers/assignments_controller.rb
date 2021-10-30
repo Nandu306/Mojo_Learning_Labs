@@ -131,6 +131,7 @@ class AssignmentsController < ApplicationController
       questions_attributes:
       [
         :id,
+        :photo,
         :prompt,
         :answer,
         :_destroy,

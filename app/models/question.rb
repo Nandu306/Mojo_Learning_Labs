@@ -6,6 +6,8 @@ class Question < ApplicationRecord
   has_many :student_answers, dependent: :destroy
   has_many :options, dependent: :destroy
 
+  has_one_attached :photo
+
   validates :prompt, presence: true
   validates :answer, presence: true
 
