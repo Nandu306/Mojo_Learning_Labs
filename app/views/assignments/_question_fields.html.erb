@@ -1,6 +1,7 @@
 <div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px;" data-addquestion-target="card">
   <div class="card-body">
 
+    <%= f.input :photo, as: :file, label: 'Image (if any):' %>
     <%= f.input :prompt, label: 'Question prompt:' %>
     <%= f.input :answer, label: 'Correct answer:' %>
     <%= f.hidden_field :_destroy %>
@@ -21,7 +22,15 @@
   <%= f.abyme_for(:options, partial: 'assignments/student_answer_fields', limit: 4) do |abyme| %>
     <%= abyme.records %>
     <%= abyme.new_records %>
-    <%= add_associated_record(content: 'Add an answer option', html: { class: 'secondary-button', style: 'width: 50%' }) %>
+
+    <%= add_associated_record(tag: :div, html: { class: "d-flex align-items-center justify-content-center", style: 'font-weight:bold' }) do %>
+    <div class="d-flex align-items-center">
+      <%= image_tag 'add_circle_outline.svg' %>
+      &nbsp;
+      <p style="margin:0px"> Add an answer option </p>
+    </div>
+    <% end %>
+
   <% end %>
 </div>
 
