@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, invite_for: 2.weeks
 
   has_many :taught_classes, dependent: :destroy
   has_many :assignments, through: :taught_classes
@@ -18,6 +18,9 @@ class User < ApplicationRecord
 
   scope :students, -> { where role: "student" }
   scope :teachers, -> { where role: "teacher" }
+  scope :admins, -> { where role: "admin" }
+
+  accepts_nested_attributes_for :school
 
 
 
@@ -49,6 +52,12 @@ class User < ApplicationRecord
     number = total_assignments - assignments_completed
 
     p number
+  end
+
+
+  def with_school
+    build_school if school.nil?
+    self
   end
 
 

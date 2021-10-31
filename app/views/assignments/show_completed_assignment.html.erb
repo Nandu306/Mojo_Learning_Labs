@@ -1,15 +1,46 @@
-<%= @assignment.class_average %>
+
+<div class="container" style="padding-left:10%; padding-right:10%;">
+
+  <% @assignment.completed_assignments.where(assignment_id: @assignment.id, user: current_user).each do |completed_assignment| %>
+
+    <div class="d-flex mt-5">
+      <h4 style="font-weight:bold;"> <%= completed_assignment.assignment.taught_class.subject %>, </h4>
+      <div style="overflow:hidden; width:1%"></div>
+      <h4 style="font-weight:bold;"> <%= completed_assignment.assignment.taught_class.year %> </h4>
+    </div>
+
+    <h4 class="text-muted"> <%= completed_assignment.assignment.topic %> </h4>
+
+    <small>
+      <p class= "text-muted" style="margin:0px"> Class average: <%= @assignment.class_average %>% </p>
+      <p class= "text-muted"> Your score: <%= "#{ completed_assignment.score.round() }%" %> </p>
+    </small>
 
 
-<% @assignment.completed_assignments.where(assignment_id: @assignment.id, user: current_user).each do |completed_assignment| %>
-  <%=  completed_assignment.assignment.topic %>
-  <%= "#{ completed_assignment.score.round(0) }%" %>
+    <div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px; padding: 20px;">
+      <div class="card-body">
 
-  <%  completed_assignment.assignment.questions.each do |question| %>
-    <%= question.prompt %>
-    <% question.student_answers.where(completed_assignment: completed_assignment).each do |student_answer| %>
-        <%= student_answer.option.content %>
-        <p> The correct answer is: <%= question.answer %> </p>
-    <% end %>
+        <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
+
+          <div class="d-flex flex-column">
+
+            <div class="d-flex">
+              <strong> <%= index + 1 %>. </strong>
+              &nbsp;
+              <strong> <%= question.prompt %> </strong>
+            </div>
+
+            <% question.student_answers.where(completed_assignment: completed_assignment).each do |student_answer| %>
+              <p class="text-muted" style="margin:0px"> Your answer: <%= student_answer.option.content %></p>
+              <p class="text-muted"> The correct answer is: <%= question.answer %> </p>
+            <% end %>
+          </div>
+
+      <% end %>
+
+      </div>
+    </div>
+
   <% end %>
-<% end %>
+</div>
+

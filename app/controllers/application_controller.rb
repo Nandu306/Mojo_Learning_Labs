@@ -18,5 +18,9 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+  # def authenticate_inviter!
+  #     current_user.teacher? || current_user.admin?
+  # end
 end
 
