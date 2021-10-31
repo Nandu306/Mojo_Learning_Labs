@@ -21,3 +21,22 @@ ul.pen-bullet {
   list-style-image: image_url('pen.svg')
 
 }
+
+// .fade {
+// background-color: #262626;
+// }
+
+
+
+@media (min-width: 992px) {
+ .modal-dialog {
+  padding-top: 5%;
+ }
+}
+
+
+@media (max-width: 768px) {
+ .modal-dialog {
+  padding-top: 30%;
+ }
+}

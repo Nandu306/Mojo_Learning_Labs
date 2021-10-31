@@ -110,7 +110,7 @@
             <p class="mt-2"> <%= pluralize((current_user.total_number_of_assignments_given),"assignment") %> </p>
 
             <% if CompletedAssignment.where(user: current_user).any? %>
-              <p class="mt-2">, <%= current_user.number_of_assignments_still_to_complete %> to complete </p>
+              <p class="mt-2">, <%= current_user.number_of_assignments_still_to_complete %> yet to complete </p>
             <% end %>
 
           </div>

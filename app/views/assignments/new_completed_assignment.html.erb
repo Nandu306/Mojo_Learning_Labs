@@ -24,8 +24,17 @@
 
               <%= a.hidden_field :assignment_id, value: @assignment.id %>
               <%= a.hidden_field :question_id, value: a.object.question.id %>
-              <b> <%= a.options[:child_index] + 1 %>. </b>
-              <b> <%= a.label :prompt, label: a.object.question.prompt %> </b>
+
+              <% if a.object.question.photo.attached? %>
+
+                <div class="d-flex align-items-center justify-content-center mt-3 mb-3">
+                  <%= cl_image_tag a.object.question.photo.key, height: 300, width: 400, crop: :fill %>
+                </div>
+
+              <% end %>
+
+              <strong> <%= a.options[:child_index] + 1 %>. </strong>
+              <strong> <%= a.label :prompt, label: a.object.question.prompt %> </strong>
 
 
 
