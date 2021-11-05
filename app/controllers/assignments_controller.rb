@@ -58,7 +58,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     @completed_assignment = @assignment.completed_assignments.build
 
-    @assignment.questions.includes(:options).each do |question|
+    @assignment.questions.includes(:photo_attachment, :options).each do |question|
       @completed_assignment.student_answers.build(question: question)
     end
 

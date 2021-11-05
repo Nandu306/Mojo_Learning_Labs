@@ -35,7 +35,15 @@ class TaughtClassesController < ApplicationController
     @taught_class = TaughtClass.find(params[:taught_class_id])
     @class_students = @taught_class.class_memberships
     authorize @taught_class
+  end
 
+   def destroy
+    @taught_class = TaughtClass.find(params[:id])
+    if @taught_class.destroy
+      redirect_to dashboard_path
+      flash[:alert] = "You've now deleted the class"
+    end
+    authorize @taught_class
   end
 
 

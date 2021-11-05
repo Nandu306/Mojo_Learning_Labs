@@ -17,4 +17,8 @@ class TaughtClassPolicy < ApplicationPolicy
     user.teacher?
   end
 
+  def destroy?
+    user.teacher?
+  end
+
 end
