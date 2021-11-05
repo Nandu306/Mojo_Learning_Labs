@@ -5,7 +5,7 @@
 
 
         <div class="row row-cols-1 row-cols-md-3 mt-4">
-          <% class_membership.taught_class.assignments.order(created_at: :desc).limit(5).each do |assignment| %>
+          <% class_membership.taught_class.assignments.order(created_at: :desc).limit(10).each do |assignment| %>
 
               <div class="col mb-4 ">
                 <div class="card shadow-sm card-index" style = "border-radius: 10px; border-left:solid 3px #11A191">
@@ -32,14 +32,18 @@
                   <div class="card-footer">
                     <small class="text-muted">
                       <% if assignment.completed_assignments.where(user: current_user, assignment: assignment).any? %>
-                          <p> Completed: Yes </p>
+                          <p class="text-center"> Completed: Yes </p>
                            <div class="d-flex align-items-center justify-content-center">
-                            <%= link_to 'View result', show_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold" %>
+                            <%= link_to 'View result', show_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold;width:80%" %>
                           </div>
                       <% else %>
-                          <p> Completed: No </p>
+                          <p class="text-center"> Completed: No </p>
                           <div class="d-flex align-items-center justify-content-center">
-                            <%= link_to 'Complete assignment', new_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold" %>
+                            <% if local_time(DateTime.now) > local_time(assignment.deadline) %>
+                              <%= link_to 'View answer', show_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold;width:80%" %>
+                            <% else %>
+                              <%= link_to 'Complete assignment', new_completed_assignment_assignment_path(assignment), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold;width:80%" %>
+                            <% end %>
                           </div>
 
                       <% end %>
@@ -55,7 +59,13 @@
 
         <br>
 
-        <%= link_to 'View all', taught_classes_path, class: "secondary-button", style: "text-decoration:none; color:black" %>
+        <%= link_to taught_classes_path, style: "text-decoration:none; color:black" do %>
+          <div class="d-flex align-items-center">
+            <p style="font-weight: bold; margin:0px"> View all </p>
+            &nbsp;
+            <%= image_tag 'arrow_forward.svg' %>
+          </div>
+        <% end %>
 
         <br>
         <br>

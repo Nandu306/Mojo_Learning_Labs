@@ -6,5 +6,7 @@ class TaughtClass < ApplicationRecord
   has_many :assignments, dependent: :destroy
   has_one :school, through: :user
 
+  validates :year, :subject, :academic_year, presence: true
+
 
 end

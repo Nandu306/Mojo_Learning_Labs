@@ -27,16 +27,16 @@
 
           <div class="card-footer">
             <small class="text-muted">
-              <p> Class size: <%= pluralize((taught_class.class_memberships.size),"student") %> </p>
+              <p class="text-center"> Class size: <%= pluralize((taught_class.class_memberships.size),"student") %> </p>
 
               <% if !ClassMembership.includes(:taught_class).where(user: current_user, taught_class: taught_class).present? %>
                 <div class="d-flex align-items-center justify-content-center">
-                  <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true, class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"  %>
+                  <%= link_to 'Join class', taught_class_class_memberships_path(taught_class), method: :post, remote: true, class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold;width:80%"  %>
                 </div>
 
               <% else %>
                 <div class="d-flex align-items-center justify-content-center">
-                  <%= link_to 'Joined class', '#', class: "tertiary-button", style: "text-decoration:none; color:grey;font-weight:bold", remote: true  %>
+                  <%= link_to "You're in this class", '#', class: "tertiary-button", style: "text-decoration:none; color:grey;width:80%", remote: true  %>
                 </div>
               <% end %>
 
@@ -48,7 +48,13 @@
     <% end %>
   </div>
   <br>
-  <%= link_to 'View all', taught_classes_path, class: "secondary-button", style: "text-decoration:none; color:black" %>
+  <%= link_to taught_classes_path, style: "text-decoration:none; color:black" do %>
+    <div class="d-flex align-items-center">
+      <p style="font-weight: bold; margin:0px"> View all </p>
+      &nbsp;
+      <%= image_tag 'arrow_forward.svg' %>
+    </div>
+  <% end %>
 
 <% else %>
   <p> No classes have been added yet </p>

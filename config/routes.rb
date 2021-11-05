@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :taught_classes do
       get '/class_students', to: 'taught_classes#class_students'
-      resources :class_memberships, only: [ :index, :create ], shallow: true
+      resources :class_memberships, only: [ :index, :create, :destroy ], shallow: true
       resources :assignments, shallow: true do
           member do
             get 'new_completed_assignment', to: 'assignments#new_completed_assignment'
