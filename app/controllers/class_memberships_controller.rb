@@ -20,15 +20,23 @@ class ClassMembershipsController < ApplicationController
     authorize @class_membership
 
     if @class_membership.save
-      redirect_to taught_classes_path(@taught_class)
+      redirect_to dashboard_path
       flash[:alert] = "You've now joined the class"
     end
   end
 
   def my_assignments
-
     @class_memberships = ClassMembership.all.includes(:user, :taught_class).where(user: current_user)
     authorize @class_memberships
+  end
+
+  def destroy
+    @class_membership = ClassMembership.find(params[:id])
+    if @class_membership.destroy
+      redirect_to dashboard_path
+      flash[:alert] = "You've now left the class"
+    end
+    authorize @class_membership
   end
 
 end

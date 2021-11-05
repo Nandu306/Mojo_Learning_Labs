@@ -33,7 +33,7 @@ class Assignment < ApplicationRecord
     self.completed_assignments.each do |completed_assignment|
       total += completed_assignment.score
     end
-    average = total.fdiv(self.completed_assignments.size)
+    average = total.fdiv(self.completed_assignments.size == 0 ? 1 : self.completed_assignments.size)
     p average.round()
   end
 

@@ -16,4 +16,8 @@ class ClassMembershipPolicy < ApplicationPolicy
   def my_assignments?
     user.student?
   end
+
+  def destroy?
+    user.student?
+  end
 end

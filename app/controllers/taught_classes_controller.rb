@@ -23,7 +23,7 @@ class TaughtClassesController < ApplicationController
 
 
     if @taught_class.save
-      redirect_to taught_classes_path
+      redirect_to dashboard_path
     else
       render :new
     end

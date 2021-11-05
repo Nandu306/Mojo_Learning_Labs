@@ -48,7 +48,13 @@
 
   <br>
 
-  <%= link_to 'View all', taught_classes_path, class: "secondary-button", style: "text-decoration:none; color:black" %>
+  <%= link_to taught_classes_path, style: "text-decoration:none; color:black" do %>
+    <div class="d-flex align-items-center">
+      <p style="font-weight: bold; margin:0px"> View all </p>
+      &nbsp;
+      <%= image_tag 'arrow_forward.svg' %>
+    </div>
+  <% end %>
 
 <% else %>
   <p> You haven't set any assignments as yet </p>

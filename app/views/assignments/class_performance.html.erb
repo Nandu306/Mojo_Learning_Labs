@@ -20,12 +20,12 @@
 
             <table class="table">
 
-              <thead>
-                <tr>
-                  <th scope="col"> Student </th>
-                  <th scope="col"> Score </th>
+              <thead >
+                <tr >
+                  <th style="border-bottom:1px solid #dee2e6;" scope="col"> Student </th>
+                  <th style="border-bottom:1px solid #dee2e6;" scope="col"> Score </th>
                   <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
-                    <th scope="col"> Q<%= index + 1  %> </th>
+                    <th style="border-bottom:1px solid #dee2e6;" scope="col"> Q<%= index + 1  %> </th>
                   <% end %>
                 </tr>
               </thead>
@@ -49,7 +49,9 @@
 
   <% else %>
 
-    <p> No one has done the assignment yet </p>
+    <div class="mt-5 text-center">
+      <p> No one has done this assignment yet </p>
+    </div>
 
   <% end %>
 
