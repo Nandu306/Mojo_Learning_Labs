@@ -20,7 +20,7 @@ class Assignment < ApplicationRecord
 
   validates :topic, presence: true
   validates :deadline, presence: true
-  validates :note, length: { maximum: 140 }
+  validates :note, length: { maximum: 150 }
 
 
   def student_percentage_completed
