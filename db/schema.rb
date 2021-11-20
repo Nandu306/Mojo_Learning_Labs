@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123755) do
 
   create_table "search_items", force: :cascade do |t|
     t.bigint "bank_assignment_id", null: false
-    t.bigint "taught_class_id", null: true
+    t.bigint "taught_class_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bank_assignment_id"], name: "index_search_items_on_bank_assignment_id"
