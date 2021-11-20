@@ -91,18 +91,16 @@ Pierre_Phys = ClassMembership.find_or_initialize_by(taught_class: Physics, user:
 Pierre_Phys.save
 
 
-
-
 # Assignments
 
 
-Respiration = Assignment.find_or_initialize_by(topic: 'Respiration', status: 'published', deadline: DateTime.new(2021,9,3,0,0,0), taught_class: Biology)
+Respiration = Assignment.find_or_initialize_by(topic: 'Respiration', note: "Please refer to pages 120-145 of your textbook", deadline: DateTime.new(2021,9,3,0,0,0), taught_class: Biology)
 Respiration.save
 
-Reactions = Assignment.find_or_initialize_by(topic: 'Reactions', status: 'published', deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Chemistry)
+Reactions = Assignment.find_or_initialize_by(topic: 'Reactions', note: "Please refer to pages 120-145 of your textbook", deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Chemistry)
 Reactions.save
 
-Forces = Assignment.find_or_initialize_by(topic: 'Forces', status: 'published', deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Physics)
+Forces = Assignment.find_or_initialize_by(topic: 'Forces', note: "Please refer to pages 120-145 of your textbook", deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Physics)
 Forces.save
 
 

@@ -10,6 +10,10 @@
     <h4 class="text-muted"> <%= @assignment.topic %> </h4>
 
     <small>
+      <p class= "text-muted"> <%= @assignment.note %> </p>
+    </small>
+
+    <small>
       <p class= "text-muted"> Due: <%= local_time(@assignment.deadline) %> </p>
     </small>
 
@@ -17,7 +21,7 @@
     <div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px; padding: 20px;">
       <div class="card-body">
 
-          <% @assignment.questions.includes(:photo_attachment, :options).each_with_index do |question, index| %>
+          <% @assignment.questions.includes(:photo_attachment, :options).reverse_order.each_with_index do |question, index| %>
 
 
               <b> <%= index + 1 %>. </b>

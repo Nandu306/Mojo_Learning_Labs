@@ -15,11 +15,9 @@ class Assignment < ApplicationRecord
   abymize :questions
   abymize :options
 
-
-  enum status: [:published, :unpublished]
-
   validates :topic, presence: true
   validates :deadline, presence: true
+  validates :note, length: { maximum: 140 }
 
 
   def student_percentage_completed
