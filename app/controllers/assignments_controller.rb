@@ -127,6 +127,7 @@ class AssignmentsController < ApplicationController
     params.require(:assignment).permit(
       :topic,
       :deadline,
+      :note,
       :taught_class_id,
       questions_attributes:
       [

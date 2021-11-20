@@ -1,6 +1,6 @@
 
 
-      <% @class_memberships..where(user: current_user).each do |class_membership| %>
+      <% @class_memberships.where(user: current_user).each do |class_membership| %>
         <div class="d-flex flex-column">
           <%= class_membership.assignment.taught_class.subject %>
           <%= class_membership.assignment.topic %>
