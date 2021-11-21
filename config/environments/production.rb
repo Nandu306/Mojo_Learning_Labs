@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://mojolearninglabs.com" }
+  config.action_mailer.default_url_options = { host: "http://www.mojolearninglabs.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   ActionMailer::Base.smtp_settings = {
