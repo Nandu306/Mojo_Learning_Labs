@@ -12,7 +12,7 @@ Rails.application.configure do
 # }
 
   config.action_mailer.delivery_method     = :postmark
-  config.action_mailer.postmark_settings   = { api_token: ENV['2a2682fd-5e21-4026-93e9-d3edf78aeb46'] }
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
   config.action_mailer.default_url_options = { host: "www.mojolearninglabs.com" }
 
   ActionMailer::Base.delivery_method = :smtp
