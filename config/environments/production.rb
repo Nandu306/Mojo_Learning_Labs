@@ -2,14 +2,19 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://www.mojolearninglabs.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
-  ActionMailer::Base.smtp_settings = {
-  :port           => ENV['MAILGUN_SMTP_PORT'],
-  :address        => ENV['MAILGUN_SMTP_SERVER'],
-  :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-  :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-  :domain         => 'www.mojolearninglabs.com', # UPDATE THIS VALUE WITH YOUR OWN APP
-  :authentication => :plain,
-}
+#   ActionMailer::Base.smtp_settings = {
+#   :port           => ENV['MAILGUN_SMTP_PORT'],
+#   :address        => ENV['MAILGUN_SMTP_SERVER'],
+#   :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+#   :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+#   :domain         => 'www.mojolearninglabs.com', # UPDATE THIS VALUE WITH YOUR OWN APP
+#   :authentication => :plain,
+# }
+
+  config.action_mailer.delivery_method     = :postmark
+  config.action_mailer.postmark_settings   = { api_token: ENV['2a2682fd-5e21-4026-93e9-d3edf78aeb46'] }
+  config.action_mailer.default_url_options = { host: "www.mojolearninglabs.com" }
+
   ActionMailer::Base.delivery_method = :smtp
 
   # Code is not reloaded between requests.

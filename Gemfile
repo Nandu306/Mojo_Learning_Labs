@@ -38,6 +38,7 @@ gem 'local_time'
 gem 'mail_form'
 gem 'cloudinary', '~> 1.16.0'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'postmark-rails'
 
 
 gem 'autoprefixer-rails', '10.2.5'
