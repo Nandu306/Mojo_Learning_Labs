@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard'
   get '/my_assignments', to: 'class_memberships#my_assignments'
 
+  post '/add_user', to: 'waiting_list#add_user'
+
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end

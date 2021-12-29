@@ -1,37 +1,129 @@
 <body style="background-color:white;">
   <div class="container">
     <div class="row">
-      <div class="column mt-4 dimensions">
-
-        <div class="text-center right-side mx-auto">
-          <%= image_tag 'home-banner.png', style: "width:95%; cover:fit; vertical-align:middle;" %>
-        </div>
-
-        <div class="no-space" style="overflow:hidden; width: 5%"></div>
-
-        <br class="mobile-space">
-        <br class="mobile-space">
 
 
-        <div class="mx-auto text-center left-side">
-          <div class="middle">
-            <br>
-            <h3 style="font-weight: bold; text-align: left;"> We make setting, marking and reviewing homework a breeze  </h3>
-            <br>
-            <p style="font-weight: 200; text-align: left;"> Meet Mojo, the assessment tool for modern schools. We aim to free up teachers’ time enabling them to spend more time and energy on lesson planning and delivery. Our platform automatically marks homework and provides in-depth feedback to gauge student problem areas. </p>
+        <section class="w-100 mt-5">
+          <div class="text-center mt-3">
+            <h1> Learn Science Without Sacrificing
+            <br> on 21st Century Skills </h1>
             <br>
 
-            <!-- <button class="primary-button" style="display:flex; align-items: left;"> Request demo </button> -->
-            <%#= link_to 'Request demo', new_demo_request_path, class: "primary-button", style: "display:flex;align-items:left;text-decoration:none;color:black" %>
-            <%= mail_to 'enquiries@mojolearninglabs.com', 'Request demo', class: "primary-button", style: "display:flex;align-items:left;text-decoration:none;color:black" %>
+            <div class="text-center" style="margin-left:25%; margin-right:25%;">
+              <p> Our bite-sized lessons use real-world applications and stories to demystify key concepts for 7-12 year olds whilst teaching them key skills such as problem-solving and critical thinking at the same time.</p>
+            </div>
 
-            <br>
+
+            <form action="/add_user" class="mt-5" method="post">
+              <input type="email" placeholder="Enter your email" class="form-box" name="[email_address]">
+              &nbsp;
+              <input type="submit" value="Join waitlist" class="home-button-1">
+            </form>
+
+
+            <div class="mt-1">
+              <small > Get notified on launch. No spam. </small>
+            </div>
+
 
           </div>
+        </section>
+      </div>
+  </div>
+
+
+
+  <section class="mt-5 w-100 overlay" style="background-color:#FFD45F; height:500px;position:relative;">
+
+    <div class="d-flex align-content-center justify-content-center w-100" style="margin-left:auto; margin-right: auto;position: absolute;top:50%;transform: translateY(-50%);">
+
+      <div class="d-flex flex-column align-content-center" style="width:30%;">
+        <div class="d-flex align-content-center justify-content-center" style="height:40%;">
+          <%= image_tag 'bulb.png'%>
         </div>
 
+        <br>
+
+        <div class="text-center w-100">
+          <strong class="text-center"> Boost understanding </strong>
+          <br>
+          <br>
+          <p style="margin:0px;"> Key concepts grounded in real-world applications and stories makes theory easy to grasp </p>
+        </div>
       </div>
+
+      <div style="overflow: hidden; width:2%"></div>
+
+      <div class="d-flex flex-column align-content-center" style="width:30%;">
+        <div class="d-flex align-content-center justify-content-center" style="height:40%;">
+          <%= image_tag 'rocket-home.png' %>
+        </div>
+
+        <br>
+
+        <div class="text-center w-100">
+          <strong class="text-center"> Learn transferable skills </strong>
+          <br>
+          <br>
+          <p style="margin-bottom:0px;"> Focus on data analysis and critical thinking ensures skills that go beyond science are developed </p>
+        </div>
+      </div>
+
+
+      <div style="overflow: hidden; width:2%"></div>
+
+      <div class="d-flex flex-column align-content-center" style="width:30%">
+        <div class="d-flex align-content-center justify-content-center" style="height:40%;">
+          <%= image_tag 'present.png'%>
+        </div>
+
+        <br>
+
+        <div class="text-center w-100">
+          <strong class="text-center"> Maintain motivation </strong>
+          <br>
+          <br>
+          <p style="margin:0px;"> Gamified environment takes the pain away from learning and keeps motivation levels high </p>
+        </div>
+      </div>
+
     </div>
+
+  </section>
+
+  <div class="container">
+    <div class="row">
+
+
+      <section class="w-100 mt-5">
+        <div class="text-center mt-3">
+          <h1> Learn Science Without Sacrificing
+          <br> on 21st Century Skills </h1>
+          <br>
+          <p> Our bite-sized lessons use real-world applications and stories to
+            <br> demystify key concepts for 7-12 year olds whilst teaching them key skills
+            <br> such as problem-solving and critical thinking at the same time.</p>
+
+            <form action="/add_user" class="mt-5" method="post">
+              <input type="email" placeholder="Enter your email" class="form-box" name="[email_address]">
+              &nbsp;
+              <input type="submit" value="Join waitlist" class="home-button-2">
+            </form>
+
+          <div class="mt-1 mb-5">
+            <small > Get notified on launch. No spam. </small>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag 'Logo.png', style: 'width:70%' %>
+      <% end %>
+    <p> enquiries@mojolearninglabs.com </p>
   </div>
 </body>
 
