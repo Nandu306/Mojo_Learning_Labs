@@ -46,17 +46,5 @@ class WaitingListController < ApplicationController
       skip_authorization
     end
 
-    def waiting_list_params
-      params.permit(:email_address)
-    end
 
-    # def add_user
-
-    #   gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_TOKEN"])
-    #   list_id = ENV["MAILCHIMP_LIST_ID"]
-
-    #   gibbon.lists(list_id).members.create(body: {email_address: params[:email_address], status: "subscribed"})
-
-
-    # end
 end

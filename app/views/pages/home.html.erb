@@ -22,7 +22,7 @@
 
 
             <div class="mt-1">
-              <small > Get notified on launch. </small>
+              <small > Get notified on launch. No spam. </small>
             </div>
 
 
@@ -104,34 +104,27 @@
             <br> demystify key concepts for 7-12 year olds whilst teaching them key skills
             <br> such as problem-solving and critical thinking at the same time.</p>
 
-          <form action="" class="mt-5">
-            <input type="text" placeholder="Enter your email" class="form-box">
-            &nbsp;
-            <input type="submit" value="Join waitlist" class="home-button-2" style="color:black;">
-          </form>
+            <form action="/add_user" class="mt-5" method="post">
+              <input type="email" placeholder="Enter your email" class="form-box" name="[email_address]">
+              &nbsp;
+              <input type="submit" value="Join waitlist" class="home-button-2">
+            </form>
 
           <div class="mt-1 mb-5">
-            <small > Get notified on launch. </small>
+            <small > Get notified on launch. No spam. </small>
           </div>
 
         </div>
       </section>
     </div>
-</div>
+  </div>
 
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag 'Logo.png', style: 'width:70%' %>
-    <% end %>
-  <p> enquiries@mojolearninglabs.com </p>
-</div>
-
-
-
-
-<%# colours = %w[#F20089,#FFBE09,#528BF4, #2D01F7, #6A01F4, #11A191, #4CC9F0] %>
-
-
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag 'Logo.png', style: 'width:70%' %>
+      <% end %>
+    <p> enquiries@mojolearninglabs.com </p>
+  </div>
 </body>
 
 
