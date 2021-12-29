@@ -32,10 +32,14 @@ class WaitingListController < ApplicationController
 
         # Check if the subscription is successful
         if response.status == 200
-          render json: {
-            status: response.status,
-            message: "#{user_details[:email_address]} has been added to the waiting list"
-          }
+
+          redirect_to root_path
+          flash[:alert] = "#{user_details[:email_address]} has been added to the waiting list"
+
+          # render json: {
+          #   status: response.status,
+          #   message: "#{user_details[:email_address]} has been added to the waiting list"
+          # }
         else
           render json: {
             status: response.status,
