@@ -3,99 +3,101 @@
     <div class="row">
 
 
-        <section class="w-100 mt-5">
-          <div class="text-center mt-3 mb-3">
+      <section class="w-100 mt-5">
+        <div class="text-center mt-3 mb-3">
 
-            <div class="text-center" style="margin-left:20%; margin-right:20%;font-weight: bold;">
-              <h1> Learn <span style="color:#F20089"> Science </span> Without Sacrificing on 21st Century <span style="color:#F20089"> Skills </span> </h1>
+          <div class="text-center" style="margin-left:20%; margin-right:20%;font-weight: bold;">
+            <h1> Learn <span style="color:#F20089"> Science </span> Without Sacrificing on 21st Century <span style="color:#F20089"> Skills </span> </h1>
+          </div>
+
+          <br>
+
+          <div class="text-center" style="margin-left:25%; margin-right:25%;">
+            <p> Science is so much more than obscure theorems and exams. We use the subject to teach 7-12 year olds how the world around them works and, in the process, ensure they pick up important transferable skills. </p>
+          </div>
+
+
+          <form action="/add_user" class="mt-5" method="post">
+            <input type="email" placeholder="Enter your email" class="form-box" name="[email_address]">
+            &nbsp;
+            <input type="submit" value="Join waitlist" class="home-button-1">
+          </form>
+
+
+          <div class="mt-1">
+            <small > Get notified on launch. No spam. </small>
+          </div>
+
+
+        </div>
+      </section>
+
+
+
+      <section class=" w-100 mt-5" style="background-color:#FFD45F;margin-right:5%;margin-left:5%;height:600px;position:relative;border-radius: 20px;">
+
+        <div class="text-center" style="padding: 5%;">
+          <h4 class="text-center mt-2 mb-2" style="margin:0px;"> Why Mojo? </h4>
+          <br>
+          <p class="mt-2" style="margin-right:5%;margin-left:5%;"> Our goal is to instill a sense of curiosity and passion rather than to simply help children jump through the next assessment hurdle. Our material covers concepts and skills that most teachers would love to tackle in their classes but struggle to do so because of time and other constraints. </p>
+        </div>
+
+        <div class="d-flex w-100 align-content-center justify-content-center" style="padding: 5%;position: absolute;top:50%;transform: translateY(-2%);">
+
+          <div class="d-flex flex-column align-content-center" style="width:30%;">
+            <div class="d-flex align-content-center justify-content-center" style="height:40%;">
+              <%= image_tag 'bulb.png'%>
             </div>
 
             <br>
 
-            <div class="text-center" style="margin-left:25%; margin-right:25%;">
-              <p> Our bite-sized lessons use real-world applications and stories to demystify key concepts for 7-12 year olds whilst teaching them key skills such as problem-solving and critical thinking at the same time.</p>
+            <div class="text-center w-100">
+              <strong class="text-center"> Boost understanding </strong>
+              <br>
+              <br>
+              <p style="margin:0px;"> Key concepts grounded in real-world applications and stories makes theory easy to grasp </p>
             </div>
-
-
-            <form action="/add_user" class="mt-5" method="post">
-              <input type="email" placeholder="Enter your email" class="form-box" name="[email_address]">
-              &nbsp;
-              <input type="submit" value="Join waitlist" class="home-button-1">
-            </form>
-
-
-            <div class="mt-1">
-              <small > Get notified on launch. No spam. </small>
-            </div>
-
-
           </div>
-        </section>
-      </div>
-  </div>
+
+          <div style="overflow: hidden; width:5%"></div>
+
+          <div class="d-flex flex-column align-content-center" style="width:30%;">
+            <div class="d-flex align-content-center justify-content-center" style="height:40%;">
+              <%= image_tag 'rocket-home.png' %>
+            </div>
+
+            <br>
+
+            <div class="text-center w-100">
+              <strong class="text-center"> Learn transferable skills </strong>
+              <br>
+              <br>
+              <p style="margin-bottom:0px;"> Focus on data analysis and critical thinking ensures skills that go beyond science are developed </p>
+            </div>
+          </div>
 
 
+          <div style="overflow: hidden; width:5%"></div>
 
-  <section class="mt-5" style="background-color:#FFD45F; height:500px;position:relative;">
+          <div class="d-flex flex-column align-content-center" style="width:30%">
+            <div class="d-flex align-content-center justify-content-center" style="height:40%;">
+              <%= image_tag 'present.png'%>
+            </div>
 
-    <div class="d-flex w-100 align-content-center justify-content-center" style="padding: 10%;position: absolute;top:50%;transform: translateY(-50%);">
+            <br>
 
-      <div class="d-flex flex-column align-content-center" style="width:30%;">
-        <div class="d-flex align-content-center justify-content-center" style="height:40%;">
-          <%= image_tag 'bulb.png'%>
+            <div class="text-center w-100">
+              <strong class="text-center"> Maintain motivation </strong>
+              <br>
+              <br>
+              <p style="margin:0px;"> Gamified environment takes the pain away from learning and keeps motivation levels high </p>
+            </div>
+          </div>
+
         </div>
 
-        <br>
+      </section>
 
-        <div class="text-center w-100">
-          <strong class="text-center"> Boost understanding </strong>
-          <br>
-          <br>
-          <p style="margin:0px;"> Key concepts grounded in real-world applications and stories makes theory easy to grasp </p>
-        </div>
-      </div>
-
-      <div style="overflow: hidden; width:5%"></div>
-
-      <div class="d-flex flex-column align-content-center" style="width:30%;">
-        <div class="d-flex align-content-center justify-content-center" style="height:40%;">
-          <%= image_tag 'rocket-home.png' %>
-        </div>
-
-        <br>
-
-        <div class="text-center w-100">
-          <strong class="text-center"> Learn transferable skills </strong>
-          <br>
-          <br>
-          <p style="margin-bottom:0px;"> Focus on data analysis and critical thinking ensures skills that go beyond science are developed </p>
-        </div>
-      </div>
-
-
-      <div style="overflow: hidden; width:5%"></div>
-
-      <div class="d-flex flex-column align-content-center" style="width:30%">
-        <div class="d-flex align-content-center justify-content-center" style="height:40%;">
-          <%= image_tag 'present.png'%>
-        </div>
-
-        <br>
-
-        <div class="text-center w-100">
-          <strong class="text-center"> Maintain motivation </strong>
-          <br>
-          <br>
-          <p style="margin:0px;"> Gamified environment takes the pain away from learning and keeps motivation levels high </p>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <div class="container">
-    <div class="row">
 
 
       <section class="w-100 mt-5">
@@ -108,7 +110,7 @@
           <br>
 
           <div class="text-center" style="margin-left:25%; margin-right:25%;">
-            <p> Our bite-sized lessons use real-world applications and stories to demystify key concepts for 7-12 year olds whilst teaching them key skills such as problem-solving and critical thinking at the same time.</p>
+            <p> Science is so much more than obscure theorems and exams. We use the subject to teach 7-12 year olds how the world around them works and, in the process, ensure they pick up important transferable skills.</p>
           </div>
 
           <form action="/add_user" class="mt-5" method="post">
@@ -123,15 +125,24 @@
 
         </div>
       </section>
+
+
+
     </div>
   </div>
 
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-center">
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon align-items-baseline mb-2">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag 'Logo.png', style: 'width:70%' %>
-      <% end %>
-    <p> enquiries@mojolearninglabs.com </p>
+    <% end %>
+
+
+    <%= mail_to "enquiries@mojolearninglabs.com" do %>
+      <%= image_tag 'envelope.png', style: 'width:50%' %>
+    <% end %>
+
   </div>
+
 </body>
 
 
