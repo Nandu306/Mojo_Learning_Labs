@@ -41,10 +41,14 @@ class WaitingListController < ApplicationController
           #   message: "#{user_details[:email_address]} has been added to the waiting list"
           # }
         else
-          render json: {
-            status: response.status,
-            message: response_body["detail"],
-          }
+
+          redirect_to root_path
+          flash[:alert] = response_body["detail"]
+
+          # render json: {
+          #   status: response.status,
+          #   message: response_body["detail"],
+          # }
         end
 
       skip_authorization
