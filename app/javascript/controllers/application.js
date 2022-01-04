@@ -10,3 +10,7 @@ window.Stimulus      = application
 application.register('abyme', AbymeController)
 
 export { application }
+
+$(document).on("turbolinks:load", function() {
+  gtag('config', 'G-4F8HCV9K9D', {'page_location': event.data.url});
+})
