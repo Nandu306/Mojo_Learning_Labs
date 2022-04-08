@@ -27,4 +27,13 @@ Teacher's dashboard:
 <img src="https://user-images.githubusercontent.com/82147496/162393477-f7cb24e4-086b-4822-9ba6-6a03b8592f41.png" width="600">
 <img src="https://user-images.githubusercontent.com/82147496/162395362-1d038804-5a4b-4e86-9820-546ed4372c6c.png" width="600">
   
-</p> 
+</p>
+
+Student's dashboard:
+
+<p float="left">
+  
+<img src="https://user-images.githubusercontent.com/82147496/162393477-f7cb24e4-086b-4822-9ba6-6a03b8592f41.png" width="600">
+<img src="https://user-images.githubusercontent.com/82147496/162395362-1d038804-5a4b-4e86-9820-546ed4372c6c.png" width="600">
+  
+</p>
