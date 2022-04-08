@@ -20,6 +20,8 @@ Mojo Learning Labs is an assignment setting and marking tool that allows teacher
 
 <h2> Product screenshots </h2>
 
+Teacher's dashboard:
+
 <p float="left">
   
 <img src="">
