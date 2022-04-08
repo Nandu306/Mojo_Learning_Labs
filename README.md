@@ -24,7 +24,7 @@ Teacher's dashboard:
 
 <p float="left">
   
-<img src="">
+<img src="https://user-images.githubusercontent.com/82147496/162393477-f7cb24e4-086b-4822-9ba6-6a03b8592f41.png">
 <img src="">
   
 </p> 
