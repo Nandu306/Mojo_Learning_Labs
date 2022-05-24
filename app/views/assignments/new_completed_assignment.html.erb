@@ -22,8 +22,6 @@
     <div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px; padding: 20px;">
       <div class="card-body">
 
-
-
           <%= f.simple_fields_for :student_answers do |a| %>
 
               <%= a.hidden_field :assignment_id, value: @assignment.id %>
@@ -51,9 +49,6 @@
               <br>
 
           <% end %>
-
-
-
 
       </div>
     </div>
