@@ -61,17 +61,4 @@ class User < ApplicationRecord
   end
 
 
-  # def first_deadline
-
-  #   sorted_array = []
-
-  #   self.class_memberships.includes(:taught_class).each do |class_membership|
-  #     if class_membership.taught_class.assignments.any?
-  #        sorted_array = class_membership.taught_class.assignments.sort_by { |assignment| assignment.deadline }.reverse
-  #        p sorted_array[0]
-  #     end
-
-  #   end
-  # end
-
 end
