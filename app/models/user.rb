@@ -4,6 +4,16 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :validatable, invite_for: 2.weeks
 
+  # constants
+
+  SCHOOLS = ['Best School', 'Second Best School']
+
+  # enums
+
+  enum role: { teacher: 0, student: 1, admin: 2 }
+
+  # associations
+
   has_many :taught_classes, dependent: :destroy
   has_many :assignments, through: :taught_classes
   has_many :class_memberships, dependent: :destroy
@@ -12,53 +22,48 @@ class User < ApplicationRecord
 
   belongs_to :school
 
-
-  enum role: [:teacher, :student, :admin]
-  after_initialize :set_default_role, :if => :new_record?
-
-  scope :students, -> { where role: "student" }
-  scope :teachers, -> { where role: "teacher" }
-  scope :admins, -> { where role: "admin" }
-
   accepts_nested_attributes_for :school
 
-
+  # validations
 
   validates :name, presence: true
   # validates :role, presence: true
 
-  SCHOOLS = ['Best School', 'Second Best School']
+  # callbacks
 
-  def set_default_role
-    self.role ||= :student
-  end
+  after_initialize :set_default_role, :if => :new_record?
 
   def total_number_of_assignments_given
-    assignments = 0
-    self.class_memberships.includes(:taught_class).each do |class_membership|
-      assignments += class_membership.taught_class.assignments.size
+    # assignments = 0
+    # class_memberships.includes(:taught_class).each do |class_membership|
+    #   assignments += class_membership.taught_class.assignments.size
+    # end
+
+    assignments = class_memberships.includes(:taught_class).sum do |class_membership|
+      class_membership.taught_class.assignments.size
     end
 
     p assignments
   end
 
-
   def number_of_assignments_still_to_complete
+    total_assignments = total_number_of_assignments_given
 
-    total_assignments = self.total_number_of_assignments_given
-
-    assignments_completed = self.completed_assignments.size
+    assignments_completed = completed_assignments.size
 
     number = total_assignments - assignments_completed
 
     p number
   end
 
+  private
+
+  def set_default_role
+    self.role ||= :student
+  end
 
   def with_school
     build_school if school.nil?
     self
   end
-
-
 end

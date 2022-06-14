@@ -1,5 +1,4 @@
 class Assignment < ApplicationRecord
-
   include Abyme::Model
 
   belongs_to :taught_class, counter_cache: true
@@ -12,28 +11,24 @@ class Assignment < ApplicationRecord
   accepts_nested_attributes_for :completed_assignments
   accepts_nested_attributes_for :student_answers, allow_destroy: true
 
-  abymize :questions
-  abymize :options
-
   validates :topic, presence: true
   validates :deadline, presence: true
   validates :note, length: { maximum: 140 }
 
+  abymize :questions
+  abymize :options
 
   def student_percentage_completed
-    percentage = (self.completed_assignments.size).fdiv(self.taught_class.class_memberships.size == 0 ? 1 : self.taught_class.class_memberships.size)
-    p "#{ (percentage * 100).round() }%"
+    percentage = (completed_assignments.size).fdiv(taught_class.class_memberships.size.zero? ? 1 : taught_class.class_memberships.size)
+    p "#{(percentage * 100).round}%"
   end
-
 
   def class_average
     total = 0
-    self.completed_assignments.each do |completed_assignment|
+    completed_assignments.each do |completed_assignment|
       total += completed_assignment.score
     end
-    average = total.fdiv(self.completed_assignments.size == 0 ? 1 : self.completed_assignments.size)
-    p average.round()
+    average = total.fdiv(completed_assignments.size.zero? ? 1 : completed_assignments.size)
+    p average.round
   end
-
-
 end
