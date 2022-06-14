@@ -39,11 +39,9 @@ class User < ApplicationRecord
     #   assignments += class_membership.taught_class.assignments.size
     # end
 
-    assignments = class_memberships.includes(:taught_class).sum do |class_membership|
+    class_memberships.includes(:taught_class).sum do |class_membership|
       class_membership.taught_class.assignments.size
     end
-
-    p assignments
   end
 
   def number_of_assignments_still_to_complete
@@ -51,9 +49,7 @@ class User < ApplicationRecord
 
     assignments_completed = completed_assignments.size
 
-    number = total_assignments - assignments_completed
-
-    p number
+    total_assignments - assignments_completed
   end
 
   private

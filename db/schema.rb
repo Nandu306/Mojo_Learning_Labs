@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_14_122827) do
+ActiveRecord::Schema.define(version: 2022_06_14_163343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 2022_06_14_122827) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
-    t.string "name"
+    t.string "name", null: false
     t.bigint "school_id"
     t.string "year"
     t.string "invitation_token"

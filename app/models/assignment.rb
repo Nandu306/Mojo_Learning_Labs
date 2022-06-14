@@ -20,15 +20,14 @@ class Assignment < ApplicationRecord
 
   def student_percentage_completed
     percentage = (completed_assignments.size).fdiv(taught_class.class_memberships.size.zero? ? 1 : taught_class.class_memberships.size)
-    p "#{(percentage * 100).round}%"
+    "#{(percentage * 100).round}%"
   end
 
   def class_average
-    total = 0
-    completed_assignments.each do |completed_assignment|
-      total += completed_assignment.score
+    total = completed_assignments.sum do |completed_assignment|
+      completed_assignment.score
     end
     average = total.fdiv(completed_assignments.size.zero? ? 1 : completed_assignments.size)
-    p average.round
+    average.round
   end
 end
