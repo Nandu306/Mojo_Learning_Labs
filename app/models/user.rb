@@ -52,14 +52,14 @@ class User < ApplicationRecord
     total_assignments - assignments_completed
   end
 
+  def with_school
+    build_school if school.nil?
+    self
+  end
+
   private
 
   def set_default_role
     self.role ||= :student
-  end
-
-  def with_school
-    build_school if school.nil?
-    self
   end
 end
