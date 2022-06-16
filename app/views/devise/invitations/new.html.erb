@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-5 mb-4 text-center"> <%= t "devise.invitations.new.header" %> </h2>
+      <div class="card card-log-in mt-3 mb-3 border border-dark shadow mx-auto" style ="height: auto; border-radius: 20px;">
+        <div class="card-body">
+
+          <%= simple_form_for([resource_name, resource.with_school], url: invitation_path(resource_name), html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+              <%= f.input :name %>
+
+              <% resource.class.invite_key_fields.each do |field| -%>
+                <%= f.input field, label: "Email:" %>
+              <% end %>
+
+              <%= f.input :role, label: "Role:", collection: User.roles.map { |key, value| [key.humanize, key] } %>
+
+
+
+            <%= f.simple_fields_for :school do |s| %>
+                <%= s.input :name, label: "School name:", collection: School.all.map { |r| [r.name, r.id] }, include_blank: true %>
+            <% end %>
+
+          <br>
+
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <%= f.submit t("devise.invitations.new.submit_button"), class: "primary-button" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

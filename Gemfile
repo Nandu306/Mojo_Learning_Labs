@@ -30,6 +30,18 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 
+# gems added by me
+
+gem 'pundit', '~> 2.1', '>= 2.1.1'
+gem 'abyme'
+gem 'local_time'
+gem 'mail_form'
+gem 'cloudinary', '~> 1.16.0'
+gem 'devise_invitable', '~> 2.0.0'
+gem 'postmark-rails'
+gem 'faraday', '~> 1.8'
+
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
@@ -48,6 +60,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 group :test do
@@ -60,3 +73,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

@@ -1,6 +1,21 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+  config.action_mailer.default_url_options = { host: "http://www.mojolearninglabs.com" }
   # Settings specified here will take precedence over those in config/application.rb.
+
+#   ActionMailer::Base.smtp_settings = {
+#   :port           => ENV['MAILGUN_SMTP_PORT'],
+#   :address        => ENV['MAILGUN_SMTP_SERVER'],
+#   :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+#   :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+#   :domain         => 'www.mojolearninglabs.com', # UPDATE THIS VALUE WITH YOUR OWN APP
+#   :authentication => :plain,
+# }
+
+  config.action_mailer.delivery_method     = :postmark
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
+  config.action_mailer.default_url_options = { host: "www.mojolearninglabs.com" }
+
+  ActionMailer::Base.delivery_method = :smtp
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -37,7 +52,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :cloudinary
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

@@ -1,0 +1,11 @@
+<h1> Your classes at <%= current_user.school.name %></h1>
+
+<% @class_memberships.each do |class_membership| %>
+
+  <div class="d-flex flex-column">
+    <%= class_membership.taught_class.year %>
+    <%= class_membership.taught_class.subject %>
+    <%= class_membership.taught_class.academic_year %>
+  </div>
+
+ <% end %>
