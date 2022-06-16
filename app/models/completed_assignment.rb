@@ -7,10 +7,9 @@ class CompletedAssignment < ApplicationRecord
 
   def score
     score = 0
-    self.student_answers.includes(:question, :option).each do |student_answer|
+    student_answers.includes(:question, :option).each do |student_answer|
       score += 1 if student_answer.question.answer == student_answer.option.content
     end
-    p score.fdiv(self.assignment.questions.size) * 100
+    p score.fdiv(assignment.questions.size) * 100
   end
-
 end

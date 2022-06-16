@@ -36,50 +36,17 @@ ActiveRecord::Schema.define(version: 2021_11_20_123755) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "school_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["school_id"], name: "index_admins_on_school_id"
-    t.index ["user_id"], name: "index_admins_on_user_id"
-  end
-
   create_table "assignments", force: :cascade do |t|
     t.string "topic"
     t.datetime "deadline"
+    t.bigint "user_id"
     t.bigint "taught_class_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "completed_assignments_count"
     t.string "note"
     t.index ["taught_class_id"], name: "index_assignments_on_taught_class_id"
-  end
-
-  create_table "bank_assignments", force: :cascade do |t|
-    t.string "year"
-    t.string "subject"
-    t.string "topic"
-    t.integer "curriculum"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "bank_options", force: :cascade do |t|
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "bank_question_id", null: false
-    t.index ["bank_question_id"], name: "index_bank_options_on_bank_question_id"
-  end
-
-  create_table "bank_questions", force: :cascade do |t|
-    t.string "prompt"
-    t.string "correct_answer"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "bank_assignment_id", null: false
-    t.index ["bank_assignment_id"], name: "index_bank_questions_on_bank_assignment_id"
+    t.index ["user_id"], name: "index_assignments_on_user_id"
   end
 
   create_table "class_memberships", force: :cascade do |t|
@@ -133,15 +100,6 @@ ActiveRecord::Schema.define(version: 2021_11_20_123755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "search_items", force: :cascade do |t|
-    t.bigint "bank_assignment_id", null: false
-    t.bigint "taught_class_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bank_assignment_id"], name: "index_search_items_on_bank_assignment_id"
-    t.index ["taught_class_id"], name: "index_search_items_on_taught_class_id"
-  end
-
   create_table "student_answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -176,7 +134,7 @@ ActiveRecord::Schema.define(version: 2021_11_20_123755) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role"
-    t.string "name"
+    t.string "name", null: false
     t.bigint "school_id"
     t.string "year"
     t.string "invitation_token"
@@ -196,19 +154,14 @@ ActiveRecord::Schema.define(version: 2021_11_20_123755) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "admins", "schools"
-  add_foreign_key "admins", "users"
   add_foreign_key "assignments", "taught_classes"
-  add_foreign_key "bank_options", "bank_questions"
-  add_foreign_key "bank_questions", "bank_assignments"
+  add_foreign_key "assignments", "users"
   add_foreign_key "class_memberships", "taught_classes"
   add_foreign_key "class_memberships", "users"
   add_foreign_key "completed_assignments", "assignments"
   add_foreign_key "completed_assignments", "users"
   add_foreign_key "options", "questions"
   add_foreign_key "questions", "assignments"
-  add_foreign_key "search_items", "bank_assignments"
-  add_foreign_key "search_items", "taught_classes"
   add_foreign_key "student_answers", "assignments"
   add_foreign_key "student_answers", "completed_assignments"
   add_foreign_key "student_answers", "options"
