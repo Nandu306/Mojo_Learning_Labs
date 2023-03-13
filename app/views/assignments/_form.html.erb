@@ -17,7 +17,7 @@
                 <p style="font-weight:bold;margin:0px;"> Questions </p>
                 <div data-action="click->addquestion#show">
                   <%= add_associated_record(tag: :div, html: {class: "d-flex justify-content-end" }) do %>
-                    <%= image_tag 'add_circle_outline.svg' %>
+                    <%= image_tag 'add_circle_outline.svg', alt: 'Add question', id: 'addquestion' %>
                   <% end %>
                 </div>
               </div>

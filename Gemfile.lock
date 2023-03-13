@@ -95,6 +95,7 @@ GEM
     devise_invitable (2.0.5)
       actionmailer (>= 5.0)
       devise (>= 4.6)
+    diff-lcs (1.5.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -228,6 +229,23 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rspec-core (3.9.3)
+      rspec-support (~> 3.9.3)
+    rspec-expectations (3.9.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-rails (3.9.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.4)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
@@ -319,6 +337,7 @@ DEPENDENCIES
   pundit (~> 2.1, >= 2.1.1)
   rails (~> 6.0.4, >= 6.0.4.1)
   redis (~> 4.0)
+  rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
   simple_form
@@ -334,4 +353,4 @@ RUBY VERSION
    ruby 2.6.7p197
 
 BUNDLED WITH
-   2.2.23
+   2.3.13
