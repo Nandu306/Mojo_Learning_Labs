@@ -45,8 +45,6 @@ RSpec.feature "teacher creates a new class" do
     click_on "Set an assignment"
     fill_in "Topic", with: "Chemistry"
     find_by_id('addquestion').click
-    # prompt = page.find_by_id("#question")
-    # prompt.set("How are you?")
     click_on "Set assignment"
 
     expect(page).to have_content('Chemistry')
