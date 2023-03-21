@@ -26,21 +26,20 @@
           </div>
 
           <div class="card-footer">
-            <small class="text-muted">
-              <div class="text-center">
+            <small class="text-muted text-center">
+
                 <p> Class size: <%= pluralize((taught_class.class_memberships.size),"student") %> </p>
 
                 <%#= link_to 'Set an assignment', new_taught_class_assignment_path(taught_class), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold;width:80%"%>
                 <div class="d-flex justify-content-around">
 
-                  <%= link_to 'Remove class', taught_class_path(taught_class), class: "tertiary-button", method: :delete, rmeote: true, style: "text-decoration:none; color:black;font-weight:bold"%>
+                  <%= link_to 'Remove class', taught_class_path(taught_class), class: "tertiary-button", method: :delete, remote: true, style: "text-decoration:none; color:black;font-weight:bold"%>
 
                   <div style="overflow:hidden; width: 2%;"></div>
 
                   <%= link_to 'Set an assignment', new_taught_class_assignment_path(taught_class), class: "tertiary-button", style: "text-decoration:none; color:black;font-weight:bold"%>
                 </div>
 
-              </div>
             </small>
           </div>
         </div>
