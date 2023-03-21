@@ -77,8 +77,6 @@ RUN --mount=type=cache,id=prod-apt-cache,sharing=locked,target=/var/cache/apt \
 
 COPY --from=gems /app /app
 COPY --from=node_modules /app/node_modules /app/node_modules
-COPY --from=gems /usr/lib/fullstaq-ruby/versions /usr/lib/fullstaq-ruby/versions
-COPY --from=gems /usr/local/bundle /usr/local/bundle
 
 ENV SECRET_KEY_BASE 1
 
