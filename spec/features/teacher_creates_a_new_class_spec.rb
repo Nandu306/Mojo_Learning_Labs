@@ -4,10 +4,10 @@ require "bullet"
 
 RSpec.feature "teacher creates a new class" do
   before do
-    school = School.new(name: 'School')
-    @user = User.create(name: 'Jane Doe', email: 'jane@email.com', password: 'password', role: 'teacher', school: school)
-    @user_2 = User.create(name: 'John Doe', email: 'john@email.com', password: 'password', role: 'teacher', school: school)
-    login_as(@user)
+    create(:school)
+    @user_1 = create(:user)
+    @user_2 = create(:user, name: "John Doe")
+    login_as(@user_1)
   end
 
   scenario "they can create and see a new class on their dashboard" do
@@ -29,9 +29,9 @@ RSpec.feature "teacher creates a new class" do
   scenario "they can only see classes that they have created" do
     visit dashboard_path
 
-    TaughtClass.create(year: 'Year 2', subject: 'Science', academic_year: "2022/2023", user: @user)
+    create(:taught_class, user: @user_1)
 
-    expect(@user.taught_classes.count).to eq(1)
+    expect(@user_1.taught_classes.count).to eq(1)
 
     login_as(@user_2)
     visit dashboard_path
@@ -39,17 +39,12 @@ RSpec.feature "teacher creates a new class" do
     expect(@user_2.taught_classes.count).to eq(0)
   end
 
-  scenario "they can set a new assignment" do
-    TaughtClass.create(year: 'Year 2', subject: 'Science', academic_year: "2022/2023", user: @user)
+  scenario "invalid class input" do
     visit dashboard_path
-    click_on "Set an assignment"
-    fill_in "Topic", with: "Chemistry"
-    find_by_id('addquestion').click
-    click_on "Set assignment"
+    click_on "Create a class"
+    fill_in "Year", with: ""
+    click_on "commit"
 
-    expect(page).to have_content('Chemistry')
-    expect(Assignment.count).to eq(1)
-    expect(Assignment.last.topic).to eq('Chemistry')
-    expect(Assignment.last.taught_class.subject).to eq('Science')
+    expect(page).to have_content("Year can't be blank")
   end
 end
