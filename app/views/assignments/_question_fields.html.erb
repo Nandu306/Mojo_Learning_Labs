@@ -2,7 +2,7 @@
   <div class="card-body">
 
     <%= f.input :photo, as: :file, label: 'Image (if any):' %>
-    <%= f.input :prompt, label: 'Question prompt:', placeholder: "Which organ is part of the digestive system?" %>
+    <%= f.input :prompt, label: 'Question prompt:', placeholder: "Which organ is part of the digestive system?", input_html: { id: "question" } %>
     <%= f.input :answer, label: 'Correct answer:', placeholder: "Colon" %>
     <%= f.hidden_field :_destroy %>
 

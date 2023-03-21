@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createClassModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="border-radius:20px;">
       <div class="modal-header border-0 text-center">
@@ -8,13 +8,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="createClassModal">
 
-        <%= simple_form_for TaughtClass.new do |f| %>
+        <%= simple_form_for TaughtClass.new, input_html: {id: "createClassModal" } do |f| %>
           <div style="padding:20px;">
-            <%= f.input :year, label: "Year:", placeholder: "Year 8", label_html: { style: "font-weight:bold" } %>
-            <%= f.input :subject, label: "Subject:", placeholder: "Chemistry", label_html: { style: "font-weight:bold" } %>
-            <%= f.input :academic_year, label: "Academic Year:", placeholder: "2021/2022", label_html: { style: "font-weight:bold" } %>
+            <%= f.input :year, label: "Year:", placeholder: "Year 8", label_html: { style: "font-weight:bold" }, input_html: {id: "Year"} %>
+            <%= f.input :subject, label: "Subject:", placeholder: "Chemistry", label_html: { style: "font-weight:bold" }, input_html: {id: "Subject"} %>
+            <%= f.input :academic_year, label: "Academic Year:", placeholder: "2021/2022", label_html: { style: "font-weight:bold" }, input_html: {id: "Academic Year"} %>
           </div>
 
           <div class="d-flex align-items-center justify-content-center"> <%= f.button :submit, "Create class", class: "primary-button" %> </div>

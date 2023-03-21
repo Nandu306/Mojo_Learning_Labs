@@ -14,7 +14,7 @@
           <div class="d-flex flex-column">
             <h4 style="font-weight:bold;"> Welcome, <%= current_user.name %> </h4>
             <%= render "create_class_modal" %>
-            <%= link_to 'Create a class', new_taught_class_path, class: "primary-button", style: "text-decoration: none; color: black; width:80%;text-align:center;", data: { toggle: "modal", target:"#exampleModal" } %>
+            <%= link_to 'Create a class', new_taught_class_path, class: "primary-button", style: "text-decoration: none; color: black; width:80%;text-align:center;", data: { toggle: "modal", target:"#createClassModal" } %>
           </div>
 
         </div>
