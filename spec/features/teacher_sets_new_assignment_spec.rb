@@ -6,9 +6,10 @@ RSpec.feature "teacher sets new assignment" do
   before do
     create(:school)
     @user_1 = create(:user, role: 'teacher')
-    @user_2 = create(:user, name: "John Doe")
     login_as(@user_1)
     create(:taught_class, user: @user_1)
+
+    # Capybara.default_driver = :selenium
   end
 
   scenario "they can set a new assignment" do
