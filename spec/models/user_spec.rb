@@ -2,10 +2,10 @@ require "rails_helper"
 require "active_record"
 require "bullet"
 
-RSpec.describe Question do
+RSpec.describe User do
   before do
     create(:school)
-    @user_1 = create(:user, role: 'teacher')
+    @user_1 = create(:user)
     @student = create(:user, role: 'student')
     @class = create(:taught_class, user: @user_1)
     @class_membership = create(:class_membership, user: @student, taught_class: @class)
@@ -17,16 +17,23 @@ RSpec.describe Question do
     @student_answer = create(:student_answer, completed_assignment: @completed_assignment, question: @question, option: @option_one)
   end
 
-  describe "#question_score" do
-    it "calculates question score" do
-      @question.question_score
+  describe "#total_number_of_assignments_given" do
+    it "calculates the number of assignments a student has" do
+      @student.total_number_of_assignments_given
 
-      expect(@question.question_score).to eq 1
+      expect(@student.total_number_of_assignments_given).to eq 1
+    end
+  end
+
+  describe "#number_of_assignments_still_to_complete" do
+    it "assigns a student role to a user when they sign up" do
+      @student.number_of_assignments_still_to_complete
+
+      expect(@student.number_of_assignments_still_to_complete).to eq 0
     end
   end
 
   describe "validations" do
-    it { should validate_presence_of(:prompt) }
-    it { should validate_presence_of(:answer) }
+    it { should validate_presence_of(:name) }
   end
 end
