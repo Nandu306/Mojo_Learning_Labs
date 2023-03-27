@@ -41,6 +41,7 @@ gem 'devise_invitable', '~> 2.0.0'
 gem 'postmark-rails'
 gem 'faraday', '~> 1.8'
 gem "net-http"
+gem 'launchy', '~> 2.4', '>= 2.4.3'
 
 
 gem 'autoprefixer-rails', '10.2.5'
@@ -69,7 +70,6 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'

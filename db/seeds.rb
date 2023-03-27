@@ -100,7 +100,7 @@ Respiration.save
 Reactions = Assignment.find_or_initialize_by(topic: 'Reactions', note: "Please refer to pages 120-145 of your textbook", deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Chemistry)
 Reactions.save
 
-Forces = Assignment.find_or_initialize_by(topic: 'Forces', note: "Please refer to pages 120-145 of your textbook", deadline: DateTime.new(2021,9,5,0,0,0), taught_class: Physics)
+Forces = Assignment.find_or_initialize_by(topic: 'Forces', note: "Please refer to pages 120-145 of your textbook", deadline: DateTime.new(2029,9,5,0,0,0), taught_class: Physics)
 Forces.save
 
 

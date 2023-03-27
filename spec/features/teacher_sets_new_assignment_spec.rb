@@ -2,7 +2,7 @@ require "rails_helper"
 require "active_record"
 require "bullet"
 
-RSpec.feature "teacher sets new assignment" do
+RSpec.feature "teacher sets new assignment", js: true do
   before do
     create(:school)
     @user_1 = create(:user, role: 'teacher')
@@ -30,6 +30,8 @@ RSpec.feature "teacher sets new assignment" do
     click_on "Set an assignment"
     fill_in "Topic", with: ""
     find_by_id('addquestion').click
+    fill_in 'Question prompt:', with: "how?"
+    fill_in 'Correct answer:', with: "yes!"
     click_on "Set assignment"
 
     expect(page).to have_content("Topic can't be blank")

@@ -71,4 +71,7 @@ RSpec.configure do |config|
   end
 
   config.include FactoryBot::Syntax::Methods
+  config.before(:each, js: true) do
+    Capybara.default_driver = :selenium
+  end
 end
