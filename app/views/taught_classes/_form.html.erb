@@ -1,0 +1,7 @@
+
+<%= simple_form_for(taught_class, remote:true) do |f| %>
+<%= f.input :year %>
+<%= f.input :subject %>
+<%= f.input :academic_year %>
+<%= f.button :submit, "Create a class", class: "btn btn-primary" %>
+<% end %>

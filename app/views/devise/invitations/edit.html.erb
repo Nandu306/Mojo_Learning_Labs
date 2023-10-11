@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mt-5 mb-4 text-center"> <%= t "devise.invitations.edit.header" %> </h2>
+      <div class="card card-log-in mt-3 mb-3 border border-dark shadow mx-auto" style ="height: auto; border-radius: 20px;">
+        <div class="card-body">
+          <%= simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+            <%= f.hidden_field :invitation_token %>
+
+            <div class="form-inputs">
+              <%= f.input :password %>
+              <%= f.input :password_confirmation %>
+            </div>
+
+          <br>
+
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <%= f.submit t("devise.invitations.edit.submit_button"), class: "primary-button" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

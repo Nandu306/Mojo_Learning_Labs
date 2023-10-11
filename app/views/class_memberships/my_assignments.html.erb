@@ -1,0 +1,20 @@
+
+      <% @class_memberships.each do |class_membership| %>
+        <% class_membership.assignments.each do |assignment| %>
+        <div class="d-flex flex-column">
+          <%= assignment.taught_class.subject %>
+          <%= assignment.topic %>
+          <%= local_time(assignment.deadline) %>
+
+          <% if assignment.completed_assignments.where(user: current_user, assignment_id: assignment.id).present? %>
+            <p> You've completed this assignment </p>
+            <%= link_to 'See your submission and results', show_completed_assignment_assignment_path(assignment) %>
+          <% else %>
+            <%= link_to 'Start assignment', new_completed_assignment_assignment_path(assignment) %>
+          <% end %>
+
+        </div>
+        <% end %>
+      <% end %>
+
+

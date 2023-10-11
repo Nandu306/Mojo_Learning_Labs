@@ -1,0 +1,52 @@
+<% if ClassMembership.where(user: current_user).any? %>
+
+  <div class="row row-cols-1 row-cols-md-3 mt-4">
+    <% ClassMembership.includes([:taught_class]).where(user: current_user).limit(5).each do |class_membership| %>
+
+      <div class="col mb-4 ">
+        <div class="card shadow-sm card-index" style = "border-radius: 10px;border-left:solid 3px #4CC9F0 ">
+          <div class="card-body">
+
+                <div class="d-flex align-items-center">
+                  <%= image_tag "rocket.png", style: "width: 15%" %>
+                  <div style="overflow:hidden; width:5%"></div>
+
+                  <div class="card-text d-flex justify-content-between" style="width:100%;">
+                    <div>
+                      <p style="margin-bottom: 0px; font-weight:bold"> <%= class_membership.taught_class.subject.capitalize %> </p>
+                      <p style= "color: #767676; font-size: 14px;"> <%= class_membership.taught_class.year.capitalize %> </p>
+                    </div>
+
+                    <div>
+                      <p> <%= class_membership.taught_class.academic_year %> </p>
+                    </div>
+                  </div>
+                </div>
+
+          </div>
+
+          <div class="card-footer">
+            <small class="text-muted">
+              <p class="text-center"> Class size: <%= pluralize((class_membership.taught_class.class_memberships.size),"student") %> </p>
+              <div class="d-flex align-items-center justify-content-center">
+                <%= link_to 'Leave class', class_membership_path(class_membership), class: "tertiary-button", style: "text-decoration: none; color:black;font-weight:bold;width:80%", remote: true, method: :delete %>
+              </div>
+            </small>
+          </div>
+        </div>
+        </div>
+
+    <% end %>
+  </div>
+  <br>
+  <%= link_to taught_classes_path, style: "text-decoration:none; color:black" do %>
+    <div class="d-flex align-items-center">
+      <p style="font-weight: bold; margin:0px"> View all </p>
+      &nbsp;
+      <%= image_tag 'arrow_forward.svg' %>
+    </div>
+  <% end %>
+
+<% else %>
+  <p> You aren't part of any classes as yet </p>
+<% end %>

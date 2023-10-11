@@ -1,0 +1,7 @@
+<h1> Class members (<%= @class_students.size %>) </h1>
+
+<% @class_students.includes(:user).each do |class_student| %>
+<ul>
+  <li> <%= class_student.user.name %> </li>
+</ul>
+<% end %>

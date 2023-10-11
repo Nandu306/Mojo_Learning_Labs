@@ -1,0 +1,36 @@
+<div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px;" data-addquestion-target="card">
+  <div class="card-body">
+
+    <%= f.input :photo, as: :file, label: 'Image (if any):' %>
+    <%= f.input :prompt, label: 'Question prompt:', placeholder: "Which organ is part of the digestive system?", input_html: { id: "question" } %>
+    <%= f.input :answer, label: 'Correct answer:', placeholder: "Colon" %>
+    <%= f.hidden_field :_destroy %>
+
+  </div>
+</div>
+
+<div>
+  <%= remove_associated_record(tag: :div, html: { class: "d-flex justify-content-end" }) do %>
+    <%= image_tag 'trash-can.svg' %>
+  <% end %>
+</div>
+
+
+<br>
+
+<div class="text-center" style="padding:20px;">
+  <%= f.abyme_for(:options, partial: 'assignments/student_answer_fields', limit: 4) do |abyme| %>
+    <%= abyme.records %>
+    <%= abyme.new_records %>
+
+    <%= add_associated_record(tag: :div, html: { class: "d-flex align-items-center justify-content-center", style: 'font-weight:bold' }) do %>
+    <div class="d-flex align-items-center">
+      <%= image_tag 'add_circle_outline.svg' %>
+      &nbsp;
+      <p style="margin:0px"> Add an answer option </p>
+    </div>
+    <% end %>
+
+  <% end %>
+</div>
+

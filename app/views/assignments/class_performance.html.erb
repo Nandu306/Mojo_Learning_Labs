@@ -1,0 +1,60 @@
+<div class="container">
+    <% if @completed_assignments.present? %>
+
+      <% @completed_assignments.each do |completed_assignment| %>
+
+        <div class="d-flex mt-5">
+          <h4 style="font-weight:bold;"> <%= completed_assignment.assignment.taught_class.subject %>, </h4>
+          <div style="overflow:hidden; width:1%"></div>
+          <h4 style="font-weight:bold;"> <%= completed_assignment.assignment.taught_class.year %> </h4>
+        </div>
+
+        <h4 class="text-muted"> <%= completed_assignment.assignment.topic %> </h4>
+
+        <p class="text-muted"> Class average: <%= completed_assignment.assignment.class_average %>% </p>
+
+
+
+        <div class="card mt-3 mb-3 border border-dark shadow-sm mx-auto" style ="width:100%;border-radius: 20px; padding:20px;">
+          <div class="card-body">
+
+            <table class="table">
+
+              <thead >
+                <tr >
+                  <th style="border-bottom:1px solid #dee2e6;" scope="col"> Student </th>
+                  <th style="border-bottom:1px solid #dee2e6;" scope="col"> Score </th>
+                  <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
+                    <th style="border-bottom:1px solid #dee2e6;" scope="col"> Q<%= index + 1  %> </th>
+                  <% end %>
+                </tr>
+              </thead>
+
+              <tbody>
+                  <tr>
+                    <td scope="row"> <%= completed_assignment.user.name %> </td>
+                    <td> <%= completed_assignment.score.round() %>% </td>
+                    <% completed_assignment.assignment.questions.each_with_index do |question, index| %>
+                      <td> <%= question.question_score %> </td>
+                    <% end %>
+                  </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+
+      <% end %>
+
+  <% else %>
+
+    <div class="mt-5 text-center">
+      <p> No one has done this assignment yet </p>
+    </div>
+
+  <% end %>
+
+</div>
+
+

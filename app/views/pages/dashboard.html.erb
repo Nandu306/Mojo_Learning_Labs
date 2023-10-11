@@ -1,0 +1,131 @@
+<% if current_user.teacher? %>
+  <div class="container" style="padding:30px">
+    <div class="d-flex flex-column">
+      <br>
+
+      <div>
+        <div class="d-flex align-items-center">
+
+          <%= image_tag 'hand.png', class: "hand-size" %>
+
+
+          <div style="overflow:hidden;width:2%"></div>
+
+          <div class="d-flex flex-column">
+            <h4 style="font-weight:bold;"> Welcome, <%= current_user.name %> </h4>
+            <%= render "create_class_modal" %>
+            <%= link_to 'Create a class', new_taught_class_path, class: "primary-button", style: "text-decoration: none; color: black; width:80%;text-align:center;", data: { toggle: "modal", target:"#createClassModal" } %>
+          </div>
+
+        </div>
+        <br>
+      </div>
+
+      <br>
+
+
+      <div>
+        <div class="d-flex flex-column mt-4">
+          <h4 style="font-weight:bold;"> Classes at <%= current_user.school.name %> </h4>
+          <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
+          <p class="mt-2"> <%= pluralize((TaughtClass.where(user: current_user).size),"class") %> </p>
+        </div>
+        <%= render "taught_classes" %>
+
+      </div>
+
+      <br>
+
+      <div>
+
+        <div class="d-flex flex-column mt-4">
+          <h4 style="font-weight:bold;"> Assignments set </h4>
+          <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
+          <p class="mt-2"> <%= pluralize((current_user.assignments.size),"assignment") %> </p>
+        </div>
+
+
+      <%= render "teacher_assignments" %>
+      </div>
+    </div>
+  </div>
+
+
+
+<% elsif current_user.student? %>
+  <div class="container" style="padding:30px">
+    <div class="d-flex flex-column">
+      <br>
+
+      <div>
+        <div class="d-flex align-items-center">
+          <%= image_tag 'hand.png', style: 'width:5%' %>
+
+          <div style="overflow:hidden;width:2%"></div>
+
+          <div class="d-flex flex-column">
+            <h4 style="font-weight:bold;"> Welcome, <%= current_user.name %> </h4>
+            <strong> <p style="margin:0px;"> <%= current_user.year %> </p></strong>
+            <p style="margin:0px;"> You have <%= pluralize(current_user.number_of_assignments_still_to_complete, "assignment") %> to complete </p>
+
+          </div>
+
+        </div>
+        <br>
+      </div>
+
+      <br>
+
+
+      <div>
+          <div class="d-flex flex-column">
+            <h4 style="font-weight:bold;"> Classes you're part of </h4>
+            <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
+            <p class="mt-2"> <%= pluralize((ClassMembership.where(user: current_user).size),"class") %> </p>
+          </div>
+
+        <%= render "student_classmemberships" %>
+      </div>
+
+      <br>
+
+      <div>
+          <div class="d-flex flex-column mt-4">
+            <h4 style="font-weight:bold;"> All <%= current_user.year %> classes at <%= current_user.school.name %> </h4>
+            <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
+            <p class="mt-2"> <%= pluralize((TaughtClass.includes(user: :school).select { |taught_class| taught_class.user.school.name == current_user.school.name && taught_class.year == current_user.year }.size),"class") %> </p>
+          </div>
+
+        <%= render "all_classes" %>
+      </div>
+
+      <br>
+
+      <div>
+        <div class="d-flex flex-column mt-4">
+          <h4 style="font-weight:bold;"> Assignments set </h4>
+          <div style="border-bottom: 1px solid lightgray; width: 40px;"></div>
+
+          <div class="d-flex">
+
+            <p class="mt-2"> <%= pluralize((current_user.total_number_of_assignments_given),"assignment") %> </p>
+
+            <% if CompletedAssignment.where(user: current_user).any? %>
+              <p class="mt-2">, <%= current_user.number_of_assignments_still_to_complete %> yet to complete </p>
+            <% end %>
+
+          </div>
+
+        </div>
+
+        <%= render "student_assignments" %>
+      </div>
+
+    </div>
+  </div>
+
+<% end %>
+
+
+
+

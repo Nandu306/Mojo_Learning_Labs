@@ -1,0 +1,69 @@
+<%= simple_form_for @completed_assignment, url: create_completed_assignment_assignment_path(@assignment) do |f| %>
+
+  <div class="container" style="padding-left:10%; padding-right:10%;">
+
+    <div class="d-flex mt-5">
+      <h4 style="font-weight:bold;"> <%= @completed_assignment.assignment.taught_class.subject %>, </h4>
+      <div style="overflow:hidden; width:1%"></div>
+      <h4 style="font-weight:bold;"> <%= @completed_assignment.assignment.taught_class.year %> </h4>
+    </div>
+
+    <h4 class="text-muted"> <%= @completed_assignment.assignment.topic %> </h4>
+
+    <small>
+      <p class= "text-muted"> <%= @completed_assignment.assignment.note %> </p>
+    </small>
+
+    <small>
+      <p class= "text-muted"> Due: <%= local_time(@completed_assignment.assignment.deadline) %> </p>
+    </small>
+
+
+    <div class="card mt-3 mb-3 border border-dark shadow" style ="width: 100%;border-radius: 20px; padding: 20px;">
+      <div class="card-body">
+
+          <%= f.simple_fields_for :student_answers do |a| %>
+
+              <%= a.hidden_field :assignment_id, value: @assignment.id %>
+              <%= a.hidden_field :question_id, value: a.object.question.id %>
+
+              <% if a.object.question.photo.attached? %>
+
+                <div class="d-flex align-items-center justify-content-center mt-3 mb-3">
+                  <%= cl_image_tag a.object.question.photo.key, height: 300, width: 400, crop: :fill %>
+                </div>
+
+              <% end %>
+
+              <strong> <%= a.options[:child_index] + 1 %>. </strong>
+              <strong> <%= a.label :prompt, label: a.object.question.prompt %> </strong>
+
+
+
+              <div class="d-flex flex-column form-check">
+                <%= a.collection_radio_buttons :option_id, a.object.question.options, :id, :content, item_label_class: 'ml-2' %>
+              </div>
+
+
+
+              <br>
+
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <small>
+      <p class="text-muted"> Please check your answers carefully. You won't be able to edit them once you submit. </p>
+    </small>
+
+    <%= f.submit 'Submit', class: "primary-button" %>
+    <br>
+  </div>
+
+<% end %>
+
+
+
